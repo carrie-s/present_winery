@@ -1,16 +1,23 @@
+/* 可以共用 */
 *{
     margin: 0px;
+    box-sizing: border-box;
+}
+.clear-both{
+    clear: both;
 }
 html{
     height: 100%;
     font-size: 16px;
 }
 body{
-    background-color: #000000;
+    background-color: #0c0c0c;
     background-image: url("../images/buried.png");
     font-family: 'Noto Serif TC', serif;
     color: #FFF;
 }
+/* 共用結束 */
+/* index banner */
 header{
     /* width: auto; */
     height:100vh;
@@ -30,7 +37,8 @@ header img{
     position: absolute;
     clear: both;
 }
-
+/* index banner END */
+/* menu */
 .menubox{
     width: 35px;
     height: 35px;
@@ -63,47 +71,59 @@ opacity: 0;
 -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
 transform: rotate(45deg) translate(-8px, -8px) ;
 }
-.titleimg{
+/* menu END */
+/* NEWS */
+/* .ns-titleimg{
     margin:50px auto 0px auto;
     display: block;
 
+} */
+.ns-title{
+    width: 500px;
+    margin:30px auto;
+    /* text-align: justify; */
 }
-.title{
-    width: 300px;
-    margin: auto;
-    text-align: justify;
-}
-.title span{
+/* .ns-title span{
     font-size: 2.25rem;
-}
-.title::after{
+} */
+/* .ns-title::after{
     display:inline-block;
     content: '';
     padding-left: 99%;
-}
-.newscontent{
+} */
+.ns-content{
     width: 80%;
     margin: auto;
+    position: relative;
 }
-.newsimg{
+.news-item{
     width: 50%;
     float: left;
+    padding: 1rem;
 }
 .newstext{
     width: 50%;
+    padding: 2rem;
     float: left;
-    box-sizing: border-box;
-    padding: 1rem;
-}
-.newsbg{
-    margin-top:0.4rem ;
     position: absolute;
-    left: 0px;
-    width: 100vw;
-    height:20rem;
-    background-color: rgba(102, 85, 54, 0.445);
-    z-index: -1;
+    font-size: 1.5rem;
 }
-.clear-both{
-    clear: both;
+.newstitle{
+    font-size: 2.25rem;
 }
+dt{
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+dd{
+    margin-bottom: 1rem;
+}
+.learnmore{
+    text-align: center;
+    font-size: 1.4rem;
+}
+.newsbtn{
+    border: 1px solid #FFF;
+}
+/* NEWS END */
+/*product*/
