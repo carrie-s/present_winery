@@ -9,6 +9,32 @@
 </head>
 <body>
 <?php include_once("template/navbar.php");?>
+<!-- breadcrumb -->
+
+<section class="header">
+
+  <div class="logo-and-nav-wrap">
+			
+      <!-- <div class="logo-wrap">
+				<a href="#/global"></a>
+			</div> -->
+      
+			<div class="site-nav-wrap">
+         <nav class="nav-breadcrumb">
+						<div class="single-breadcrumb-wrap">
+                            <span class="sep"><i class="fa fa-caret-right"></i></span>
+                            <span class="breadcrumb"><a href="../index.php">HOME</a></span>
+						</div>
+						<div class="single-breadcrumb-wrap">
+                            <span class="sep"><i class="fa fa-caret-right"></i></span>
+                            <span class="breadcrumb"><a href="about.php">ABOUT</a></span>
+						</div>
+						
+				</nav>
+			</div>
+		</div>
+    </section>
+    <!-- breadcrumb end -->
 <div style="height: 1000px">
         <div class="title">
                 <img class="titleimg" src="../images/about.png" alt="about">

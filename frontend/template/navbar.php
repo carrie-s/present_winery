@@ -7,62 +7,43 @@
     </div>
 </div> -->
 <!-- toolbar end -->
-<!-- navbar -->
-<nav class="nav">
-        <div class="container">
-            <div class="logo">
-                <a href="#"><img src="../images/logo.png" width="150" alt=""></a>
-            </div>
-            <div id="mainListDiv" class="main_list">
-                <ul class="navlinks">
-                    <li><a href="../index.php">首頁</a></li>
-                    <li><a href="about.php">關於我們</a></li>
-                    <li><a href="newslist.php">最新消息</a></li>
-                    <li><a href="productlist.php">產品介紹</a></li>
-                    <li><a href="contact.php">聯絡我們</a></li>
-                </ul>
-            </div>
-            <span class="navTrigger">
-                <i></i>
-                <i></i>
-                <i></i>
-            </span>
+<div class="web-logo">
+<div class="logo-block">
+        <img src="../images/logo-150.png" alt="logo">
         </div>
-    </nav>
-    <section class="home">
-    </section>
+    </div>
+<!-- navbar -->
+    <div class="menu-wrap">
+        <div class="menu-outer">
+            <div class="menu">
+                <div class="menu-inner">
+                    <div class="menulogo">
+                     <img src="../images/logofull-150.png" alt="logo">
+                    </div>
+                    <ul class="menulist">
+                        <li><a href="../index.php">首頁</a></li>
+                        <li><a href="about.php">關於我們</a></li>
+                        <li><a href="newslist.php">最新消息</a></li>
+                        <li><a href="productlist.php">線上購買</a></li>
+                        <li><a href="contact.php">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bar">
+        <div class="icontool">
+            <div class="cart">
+                <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+            </div>
+            <div class="user">
+                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+            </div>
+            <div class="menubox" onclick="myFunction(this)">
+                <div class="menu1"></div>
+                <div class="menu2"></div>
+                <div class="menu3"></div>
+            </div>
+        </div>
+     </div>
 <!-- navbar end -->
-<!-- breadcrumb -->
-
-<section class="header">
-
-  <div class="logo-and-nav-wrap">
-			
-      <div class="logo-wrap">
-				<a href="#/global"></a>
-			</div>
-      
-			<div class="site-nav-wrap">
-         <nav class="nav">
-					
-				
-						<div class="single-breadcrumb-wrap">
-							<span class="sep"><i class="fa fa-caret-right"></i></span> <span class="breadcrumb"><a href="#">Universe</a></span>
-						</div>
-						<div class="single-breadcrumb-wrap">
-							<span class="sep"><i class="fa fa-caret-right"></i></span> <span class="breadcrumb"><a href="#">Milky Way</a></span>
-						</div>
-						<div class="single-breadcrumb-wrap">
-							<span class="sep"><i class="fa fa-caret-right"></i></span> <span class="breadcrumb"><a href="#">Solar System</a></span>
-						</div>
-						<div class="single-breadcrumb-wrap">
-							<span class="sep"><i class="fa fa-caret-right"></i></span> <span class="breadcrumb"><a href="#">Earth</a></span>
-						</div>						
-           <div class="single-breadcrumb-wrap">
-							<span class="sep"><i class="fa fa-caret-right"></i></span> <span class="breadcrumb"><a href="#">Internet</a></span>
-						</div>
-				</nav>
-			</div>
-		</div>
-    </section>
-    <!-- breadcrumb end -->

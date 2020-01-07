@@ -2,6 +2,7 @@
 *{
     margin: 0px;
     box-sizing: border-box;
+    padding: 0px;
 }
 :root {
     --bg: #fdfdfd;
@@ -31,7 +32,48 @@ ul a{
     color: inherit;
 }
 /* 共用結束 */
+/* navbar */
+.menu-outer{ 
+    width:300px;
+    height:600px;
+    background-color: #000;
+    -webkit-clip-path:polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0);
+    clip-path:polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0);
+    position: relative;
+    }
+    .menu-wrap{
+        position: fixed;
+        top:0;
+        left: 10%;
+        z-index: 100;
+        display: none;
+        /* filter: drop-shadow(2px 0px 5px #333); */
+    }
+    .menu{
+    width:280px;
+    height:585px;
+    background-color: #800020;
+    -webkit-clip-path:polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0);
+    clip-path:polygon(100% 0, 100% 76%, 50% 100%, 0 76%, 0 0);
+    position: absolute;
+    left:10px
+    }
+    .menu-inner{
+    width:278px;
+    height:583px;
+    background-color: #000;
+    -webkit-clip-path:polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0);
+    clip-path:polygon(100% 0, 100% 76.2%, 50% 100%, 0 76.2%, 0 0);
+    position: absolute;
+    left:1px
+    }
+/* navbar end */
 /* index banner */
+.web-logo{
+padding-top: 25px;
+padding-left: 25px;
+height: 62px;
+}
 header{
     /* width: auto; */
     height:100vh;
@@ -43,32 +85,69 @@ header{
     position: relative;
 
 }
-header img{
+#wine img{
     width: auto;
-    height: 105vh;
+    height: 100vh;
     left: 50%;
-    margin-left: -174px;
+    margin-left: -155px;
     position: absolute;
-    clear: both;
 }
 /* index banner END */
 /* menu */
-.menubox{
-    width: 35px;
-    height: 35px;
+.menulogo{
+    width: 150px;
+    margin:40px auto;
+}
+.icontool{
+    width: 220px;
+    height: 60px;
+    padding: 25px;
+    text-align: center;
+    float: right;
+}
+.bar{
     position: fixed;
-    right: 25px;
-    top: 25px;
+    top:0px;
+    width: 100vw;
+    height: 85px;
+
+}
+.user,.cart{
+    width: 35px;
+    height: 27px;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 15px;
+}
+.menubox{
+    display: inline-block;
+    width: 35px;
+    height: 27px;
+    /* position: fixed; */
+    /* top: 25px; */
     cursor: pointer;
 }
 .menu1, .menu2, .menu3 {
     width: 35px;
     height: 5px;
     background-color:#FFF;
-    margin-bottom: 6px;
     float: right;
     transition: 0.4s;
   }
+  .menu1{
+      margin-top:2px ;
+  }
+  .menu2{
+      margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .menulist{
+    text-align: center;
+    width: 150px;
+    margin: auto;
+    font-size: 1.3rem;
+    line-height: 3.5rem;
+}
 /* Rotate first bar */
 .change .menu1 {
     -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
@@ -92,6 +171,9 @@ transform: rotate(45deg) translate(-8px, -8px) ;
     display: block;
 
 } */
+.ns-block{
+    margin-top: 60px;
+}
 .ns-title{
     width: 500px;
     margin:30px auto;
@@ -223,6 +305,7 @@ transform: rotate(45deg) translate(-8px, -8px) ;
 .pd-content{
     width: 80%;
     margin: auto;
+    height: auto;
 }
 /* .pd-item{
     width: 46%;
@@ -230,31 +313,44 @@ transform: rotate(45deg) translate(-8px, -8px) ;
     float: left;
     margin: 1rem;
 } */
+.productinfo h2{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
 .productinfo p{
     line-height: 2.2rem;
 }
 .productinfo button{
     background-color: transparent;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.6rem;
     border: 1px solid #FFF;
     font-size: 1rem;
     color: inherit;
     font: inherit;
-    margin-top: 1.5rem;
+    margin-top: 3rem;
 }
 .multiple-items{
     width: 100%;
+
     margin: auto;
     
 }
 .multiple-items img{
-    height: 300px;
+    height: 60vh; 
     width: auto;
     float: left;
     margin-right: 2rem;
     
 }
+/* .slick-slide img {
+    max-width: 100%; 
+    transition: transform 0.5s; 
+   }
+  
+  .slick-slide.slick-center img{
+    transform: scale(1.2);
+  } */
 /* .slider-for img{
     float: left;
     width:100px;

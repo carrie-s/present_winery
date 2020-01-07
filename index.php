@@ -4,28 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Present Winery</title>
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">  
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/> 
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-<div>
-    <header>
-     <div class="menubox" onclick="myFunction(this)">
-        <div class="menu1"></div>
-        <div class="menu2"></div>
-        <div class="menu3"></div>
+<div >
+    <header >
+    <div class="web-logo">
+        <div class="logo-block">
+        <img src="images/logo-150.png" alt="logo">
+        </div>
+    </div>
+    <div class="menu-wrap">
+        <div class="menu-outer">
+            <div class="menu">
+                <div class="menu-inner">
+                    <div class="menulogo">
+                     <img src="images/logofull-150.png" alt="logo">
+                    </div>
+                    <ul class="menulist">
+                        <li><a href="index.php">首頁</a></li>
+                        <li><a href="frontend/about.php">關於我們</a></li>
+                        <li><a href="frontend/newslist.php">最新消息</a></li>
+                        <li><a href="frontend/productlist.php">線上購買</a></li>
+                        <li><a href="frontend/contact.php">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bar">
+        <div class="icontool">
+            <div class="cart">
+                <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+            </div>
+            <div class="user">
+                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+            </div>
+            <div class="menubox" onclick="myFunction(this)">
+                <div class="menu1"></div>
+                <div class="menu2"></div>
+                <div class="menu3"></div>
+            </div>
+        </div>
      </div>
-     <div>
-     </div>
+     <div id="wine">
         <img src="images/01.png" alt="winery">
-        <div id="three-container"></div>
+    </div>
     </header>
     <section>
-        <div class="ns-block">
+        <div class="ns-block" >
             <div class="ns-title">
                 <img class="ns-titleimg" src="images/news2.png" alt="news">
                 <!-- <span>最 新 消 息</span> -->
@@ -177,12 +212,14 @@
                         </div>
                     </div>
                 </div>
-                
+                <div class="clear-both"></div>
+                <div class="learnmore clear-both"><div class="newsbtn"><a href="javascript:;">了解更多</a></div></div>
+            </div>
             </div>
         </div>
 
     </section>
-    <footer>
+    <footer >
         <div class="subscription">
             <form action="">
             <label for="subscription">訂閱電子報</label>      
@@ -232,18 +269,116 @@
   <script type="text/javascript" src="slick/slick.min.js"></script>
 
   <script type="text/javascript">
+// $('.multiple-items').slick({
+//   infinite: true,
+//   slidesToShow: 2,
+//   slidesToScroll: 1
+// });
 $('.multiple-items').slick({
-  infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 3
+    infinite: true,
+    centerMode: true,
+    autoplay: true,
+  autoplaySpeed: 2500,
+  dots: true,
+  speed: 300,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
 });
   </script>
 
 <script>
 function myFunction(x) {
   x.classList.toggle("change");
-}
+};
+$(function(){
+    $(".menubox").click(function(){
+        $(".menu-wrap").slideToggle(1500);
+        $(".logo-block").slideToggle(1000);
+    });
+});
 </script>
+
+<!-- <script>
+const $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body'),
+      $section = $('.section');
+
+var numOfPages = $section.length - 1, //取得section的數量
+    curPage = 0, //初始頁
+    scrollLock = false;
+
+function scrollPage() {
+  //滑鼠滾動
+  $(document).on("mousewheel DOMMouseScroll", function(e) {
+    if (scrollLock) return;
+    if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0)
+      navigateUp();
+    else
+      navigateDown();
+  });
+  //鍵盤上下鍵
+  $(document).on("keydown", function(e) {
+    if (scrollLock) return;
+    if (e.which === 38)
+      navigateUp();
+    else if (e.which === 40)
+      navigateDown();
+  });
+}
+
+function pagination() {
+  scrollLock = true;
+  $body.stop().animate({
+    scrollTop: $section.eq(curPage).offset().top
+  }, 1000, 'swing', function(){
+    scrollLock = false;
+  });
+};
+
+function navigateUp () {
+  if (curPage === 0) return;
+  curPage--;
+  pagination();
+};
+
+function navigateDown() {
+  if (curPage === numOfPages) return;
+  curPage++;
+  pagination();
+};
+
+
+$(function() {
+  scrollPage();
+});
+</script> -->
 
 </body>
 </html>
