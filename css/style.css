@@ -9,6 +9,7 @@
     --hover-color: #800020;
     --icon: "\f105";
     --border-color: #ddd;
+    --highlight2:#800020;
     /* --sidebar-width: 160px; */
 }
 .clear-both{
@@ -24,6 +25,8 @@ body{
     background-image: url("../images/buried.png");
     font-family: 'Noto Serif TC', serif;
     color: #FFF;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 ul{
     list-style: none;
@@ -42,14 +45,43 @@ button{
     font: inherit;
     margin-top: 1.5rem;
 }
+header{
+  width: 100vw;
+  height: 20rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  margin-bottom: 4rem;
+
+}
+.pagetitle{
+
+  display: table-cell;
+  vertical-align: middle;
+}
+header h2{
+  font-size: 2rem;
+}
+.position{
+  margin-top: 24rem;
+}
+#title-center{
+  display: table;
+  text-align: center;
+  width: 100vw;
+  height: 10rem;
+}
+
 /* 可以共用 END */
 
 /* toolbar */
-/* .toolbar{
-    position: fixed;
+.toolbar{
+    /* position: fixed; */
     width: 100%;
     height: 2rem;
-    background-color: hsla(345, 100%, 25%, 0.3);
+    background-color: hsla(345, 100%, 25%, 0.8);
 }
 .toolbar-center{
     width: 80%;
@@ -59,12 +91,13 @@ button{
     text-align: right;
     font-size: 0.5rem;
     line-height: 2rem;
-} */
-/* toolbar end */
+} 
+ /* toolbar end */
 .web-logo{
-    padding-top: 25px;
-    padding-left: 25px;
-    height: 62px;
+  position: relative;
+    top: 25px;
+   left: 25px;
+   height: 62px;
     }
 /* menu */
 .menulogo{
@@ -80,10 +113,10 @@ button{
 }
 .bar{
     position: fixed;
-    top:0px;
+    top:2rem;
     width: 100vw;
     height: 85px;
-
+    z-index: 10;
 }
 .user,.cart{
     width: 35px;
@@ -146,6 +179,7 @@ transform: rotate(45deg) translate(-8px, -8px) ;
         left: 10%;
         z-index: 100;
         display: none;
+
         /* filter: drop-shadow(2px 0px 5px #333); */
     }
     .menu{
@@ -337,7 +371,7 @@ a, a:visited {
     width: 500px;
     margin:30px auto;
 }
-.about{
+/* .about{
     width: 80%;
     margin: auto;
     line-height: 2rem;
@@ -345,13 +379,13 @@ a, a:visited {
 .ab-item{
     width: 50%;
     margin: 2rem;
-}
+} */
 /*  */
 .intro {
-	position: relative;
+
 	width: 80%;
-    height: 60vh;
-    margin:60px auto;
+  height: 60vh;
+  margin:100px auto;
 }
 .left {
 	float: left;
@@ -359,8 +393,6 @@ a, a:visited {
 	width: 60%;
 	padding: 3rem 3rem 3rem 5rem;
     display: table;
-    
-    
 }
 .left > div {
 	display: table-cell;
@@ -436,6 +468,7 @@ a.current_dot {
 .news-container{
     width: 80%;
     margin: auto;
+    margin-top: 24rem;
 }
 .filter{
     width: 30%;
@@ -472,6 +505,7 @@ a.current_dot {
     width: 50%;
     height: 100%;
     margin: auto;
+    margin-top: 24rem;
 }
 .category{
     width:100%;
@@ -512,7 +546,7 @@ line-height: 4rem;
     color: var(--hover-color);
 }
 /* product_list end */
-/* news */
+/* news page */
 .news-outer{
 width: 70%;
 float: left;
@@ -520,3 +554,131 @@ float: left;
 .news-image img{
     width: 80%;
 }
+/* news page end */
+/* productfilter page */
+.productlist{
+  width:70%;
+  float: left;
+}
+.product-outer{
+  width: 32%;
+  float: left;
+  
+}
+.product-img{
+width: auto;
+max-width: 50%;
+height: 350px ;
+object-fit: cover;
+float: left;
+}
+.product-img img{
+  height: 100%;
+}
+.product-content{
+  width: 50%;
+  float: left;
+  word-wrap: break-word;
+}
+/* productfilter page end */
+/* product page */
+.product-left{
+  width: 50%;
+  float: left;
+}
+.product-left img{
+  height: 60vh;
+  width: auto;
+}
+.product-right{
+  width: 50%;
+  float: left;
+}
+.product-intro{
+  width: 100%;
+}
+/* product page end */
+/* footer */
+.footer{
+  width: 100%;
+  height: 100%;
+  
+}
+.footcolor{
+  width: 100;
+  height: 100%;
+  background-color: hsla(0, 0%, 5%, 0.507);
+  padding-top: 4rem;
+}
+.subscription{
+  width: 100%;
+  height: 8vh;
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  font-size: 2rem;
+  background-color: hsla(0, 0%, 5%, 0.507);
+}
+#subscription{
+outline-style: none ;
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;
+  border-bottom: 1px solid #FFF;
+  padding: 5px 0px;
+  width: 30%;
+  font-size: 2rem;
+  background-color: transparent;
+}
+.subscription button{
+background-color: transparent;
+cursor: pointer;
+padding: 0.5rem;
+border: 1px solid #FFF;
+color: inherit;
+font-size: 1rem;
+
+
+}
+.ft-item{
+float: left;
+  width: 33%;
+}
+.ft-item p{
+margin-right: 1rem;
+margin-left: 1rem;
+}
+.ft-center{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+.ft-logo{
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  height: 100%;
+
+}
+.design{
+  width: 100%;
+  height: 2rem;
+  background-color: var(--highlight2);
+
+}
+.copyright{
+  width: 46%;
+  font-size: 0.5rem;
+  line-height: 2rem;
+  float: left;
+}
+.design-center{
+  width: 80%;
+  margin: auto;
+}
+.designby{
+  text-align: right;
+  font-size: 0.5rem;
+  line-height: 2rem;
+}
+/* footer end */

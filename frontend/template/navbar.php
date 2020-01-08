@@ -7,11 +7,6 @@
     </div>
 </div> -->
 <!-- toolbar end -->
-<div class="web-logo">
-<div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-        </div>
-    </div>
 <!-- navbar -->
     <div class="menu-wrap">
         <div class="menu-outer">
@@ -34,10 +29,10 @@
     <div class="bar">
         <div class="icontool">
             <div class="cart">
-                <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                <a href="basket.php"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a>
             </div>
             <div class="user">
-                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                <a href="register.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
             </div>
             <div class="menubox" onclick="myFunction(this)">
                 <div class="menu1"></div>

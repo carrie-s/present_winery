@@ -43,10 +43,10 @@
     <div class="bar">
         <div class="icontool">
             <div class="cart">
-                <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                <a href="frontend/basker.php"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a>
             </div>
             <div class="user">
-                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+            <a href="frontend/register.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
             </div>
             <div class="menubox" onclick="myFunction(this)">
                 <div class="menu1"></div>
@@ -220,36 +220,46 @@
 
     </section>
     <footer >
+        
+        <div class="footer">
         <div class="subscription">
             <form action="">
-            <label for="subscription">訂閱電子報</label>      
+            <label for="subscription">訂閱電子報：
+            </label>      
             <input id="subscription" name="subscription" type="text">
             <button>訂閱</button>
             </form>
         </div>
-        <div class="footer">
+            <div class="footcolor">
             <div class="ft-center">
-            <div class="ft-item">
-                <h4>關於我們</h4>
-                <h4>最新消息</h4>
-                <h4>會員專區</h4>
-                <ul>
-                    <li><a href="">加入會員</a></li>
-                    <li><a href="">會員登入</a></li>
-                </ul>
+                <div class="ft-item">
+                    <h4>會員專區</h4>
+                    <ul>
+                        <li><a href="">加入會員</a></li>
+                        <li><a href="">會員登入</a></li>
+                    </ul>
+                </div>
+                <div class="ft-item">
+                    <h4>產品分類</h4>
+                    <ul>
+                        <li><a href="">德國</a></li>
+                        <li><a href="">西班牙</a></li>
+                        <li><a href="">法國</a></li>
+                        <li><a href="">義大利</a></li>
+                    </ul>
+                </div>
+                <div class="ft-item">
+                <i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i>
             </div>
-            <div class="ft-item">
-                <h4>產品分類</h4>
-                <ul>
-                    <li><a href="">德國</a></li>
-                    <li><a href="">西班牙</a></li>
-                    <li><a href="">比利時</a></li>
-                </ul>
-            </div>
-            <div class="ft-item">
-                <h4>聯絡我們</h4>
+            <div class="clear-both"></div>
+                <div class="ft-logo">
+                    <img src="images/logofull-150.png" alt="">
             </div>
             </div>
+            
+        </div>
         </div>
         <div class="clear-both"></div>
         <div class="design">

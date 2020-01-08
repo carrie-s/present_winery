@@ -8,9 +8,27 @@
     <?php include_once("template/head_file.php");?>
 </head>
 <body>
+<!-- <div> -->
 <?php include_once("template/navbar.php");?>
-<!-- breadcrumb -->
 
+<header style="background-image: url('../images/ab.jpg');">
+<div class="toolbar">
+    <div class="toolbar-center">
+        <div class="customer">
+        <a>會員登入</a> | <a>加入會員</a> | <a>聯絡我們</a>
+        </div>
+    </div>
+</div>
+<div class="web-logo">
+    <div class="logo-block">
+        <img src="../images/logo-150.png" alt="logo">
+    </div>
+</div>
+<div id="title-center">
+<div class="pagetitle">
+    <h2>關於我們</h2>
+
+    <!-- breadcrumb -->
 <section class="header">
 
   <div class="logo-and-nav-wrap">
@@ -35,10 +53,13 @@
 		</div>
     </section>
     <!-- breadcrumb end -->
-<div style="height: 1000px">
-        <div class="title">
+    </div>
+    </div>
+</header>
+    <div class="position">
+        <!-- <div class="title">
                 <img class="titleimg" src="../images/about.png" alt="about">
-        </div>
+        </div> -->
         <section class="intro">
             <div class="left">
                 <div>
@@ -86,6 +107,7 @@
 
 
     <?php include_once("template/footer.php");?>
+    <!-- </div> -->
     <script>
         $(window).scroll(function() {
             if ($(document).scrollTop() > 50) {

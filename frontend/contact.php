@@ -9,6 +9,24 @@
 </head>
 <body>
 <?php include_once("template/navbar.php");?>
+
+<header style="background-image: url('../images/abn(4).jpg');">
+<div class="toolbar">
+    <div class="toolbar-center">
+        <div class="customer">
+        <a>會員登入</a> | <a>加入會員</a> | <a>聯絡我們</a>
+        </div>
+    </div>
+</div>
+<div class="web-logo">
+    <div class="logo-block">
+        <img src="../images/logo-150.png" alt="logo">
+    </div>
+</div>
+<div id="title-center">
+<div class="pagetitle">
+    <h2>聯絡我們</h2>
+
 <!-- breadcrumb -->
 
 <section class="header">
@@ -35,7 +53,12 @@
 		</div>
     </section>
     <!-- breadcrumb end -->
+</div>
+</div>
+</header>
+<div class="news-container">
 
+</div>
 <?php include_once("template/footer.php");?>
 </body>
 </html>
