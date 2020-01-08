@@ -9,11 +9,11 @@
 </head>
 <body>
 <?php include_once("template/navbar.php");?>.
-<header style="background-image: url('../images/ab.jpg');">
+<header style="background-image: url('../images/ab-1.jpg');">
 <div class="toolbar">
     <div class="toolbar-center">
         <div class="customer">
-        <a>會員登入</a> | <a>加入會員</a> | <a>聯絡我們</a>
+        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
         </div>
     </div>
 </div>
@@ -76,11 +76,12 @@
             <div class="product-content">
               <h2>文章標題</h2>    
               <p>文章內容在這裡</p>
-              <button>加入購物車</button>
+              <button class="btn draw-border">加入購物車</button>
             </div>
-            <div class="clear-both"></div>
           </div>
+          <div class="clear-both"></div>
         </div>
+        
         <div class="product-outer">
           <div class="product">
             <div class="product-img">
@@ -91,7 +92,9 @@
               <p>文章內容在這裡</p>
             </div>
           </div>
+          <div class="clear-both"></div>
         </div>
+        
         <div class="product-outer">
           <div class="product">
             <div class="product-img">
@@ -102,7 +105,9 @@
               <p>文章內容在這裡</p>
             </div>
           </div>
+          <div class="clear-both"></div>
         </div>
+        
         <div class="product-outer">
           <div class="product">
             <div class="product-img">

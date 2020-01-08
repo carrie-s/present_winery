@@ -12,11 +12,11 @@
 <body>
 <?php include_once("template/navbar.php");?>
 
-<header style="background-image: url('../images/ab.jpg');">
+<header style="background-image: url('../images/ab-1.jpg');">
 <div class="toolbar">
     <div class="toolbar-center">
         <div class="customer">
-        <a>會員登入</a> | <a>加入會員</a> | <a>聯絡我們</a>
+        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
         </div>
     </div>
 </div>
@@ -90,7 +90,7 @@
   </a>
   </div>
   </div>
-  <button>看全部產品 →</button>
+  <button class="btn draw-border">看全部產品 →</button>
 </div>
 
 <?php include_once("template/footer.php");?>

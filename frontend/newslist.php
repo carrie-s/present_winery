@@ -10,11 +10,11 @@
 <body>
 <?php include_once("template/navbar.php");?>
 
-<header style="background-image: url('../images/ab.jpg');">
+<header style="background-image: url('../images/ab-1.jpg');">
 <div class="toolbar">
     <div class="toolbar-center">
         <div class="customer">
-        <a>會員登入</a> | <a>加入會員</a> | <a>聯絡我們</a>
+        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
         </div>
     </div>
 </div>
@@ -71,7 +71,7 @@
             <p>2020/01/07</p>
             <h2>文章標題</h2>
             <br>
-            <button><a href="news.php">閱讀更多</a></button>
+            <button class="btn draw-border"><a href="news.php">閱讀更多</a></button>
             </div>
         </div>
         <div class="one-news">
@@ -84,7 +84,7 @@
             <h2>文章標題</h2>
             
             <br>
-            <button>閱讀更多</button>
+            <button class="btn draw-border">閱讀更多</button>
             </div>
         </div>
         <div class="one-news">
@@ -95,7 +95,7 @@
             <p>2020/01/07</p>
             <h2>文章標題</h2>
             <br>
-            <button>閱讀更多</button>
+            <button class="btn draw-border">閱讀更多</button>
             </div>
         </div>
     </div>

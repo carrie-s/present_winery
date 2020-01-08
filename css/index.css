@@ -36,6 +36,58 @@ ul a{
     text-decoration: none;
     color: inherit;
 }
+.draw-border {
+    box-shadow: inset 0 0 0 1px #FFF;
+    color: #FFF;
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+  }
+  .draw-border::before, .draw-border::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .draw-border::before {
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+  }
+  .draw-border::after {
+    border-top-width: 1px;
+    border-right-width: 1px;
+  }
+  .draw-border:hover {
+    color: #800020;
+  }
+  .draw-border:hover::before, .draw-border:hover::after {
+    border-color: #800020;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+  }
+  .draw-border:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+  }
+  .draw-border:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+  }
+  
+  .btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+  }
+  .btn:focus {
+    outline: 1px soild #800020;
+  }
+  
 /* 共用結束 */
 /* navbar */
 .menu-outer{ 
@@ -282,8 +334,12 @@ transform: rotate(45deg) translate(-8px, -8px) ;
     font-size: 1.2rem;
 }
 .learnmore{
+    width: 200px;
+    text-align: center;
     font-size: 1.1rem;
-    margin-top: 60px;
+    /* margin-top: 30px; */
+    margin-left: auto;
+    margin-right: auto;
 }
 .newsbtn{
     width:200px ;
@@ -325,7 +381,7 @@ transform: rotate(45deg) translate(-8px, -8px) ;
 .productinfo p{
     line-height: 2.2rem;
 }
-.productinfo button{
+ button{
     background-color: transparent;
     cursor: pointer;
     padding: 0.6rem;
@@ -402,7 +458,7 @@ border-right: 0px;
 background-color: transparent;
 cursor: pointer;
 padding: 0.5rem;
-border: 1px solid #FFF;
+/* border: 1px solid #FFF; */
 color: inherit;
 font-size: 1rem;
 
@@ -448,4 +504,40 @@ margin-left: 1rem;
     text-align: right;
     font-size: 0.5rem;
     line-height: 2rem;
+}
+@media screen and (max-width:1023px){
+    html{
+        font-size: 12px;
+    }
+    #wine img{
+        max-width: 50vw;
+        max-height:100vh;
+        height: auto;
+        margin-left: -140px;
+    }
+    .ns-title{
+        max-width: 100vw;
+        height: auto;
+        /* text-align: justify; */
+    }
+    .news-item{
+        width: 100%;
+        height: auto;
+        /* padding: 1rem; */
+    }
+
+    button{
+        margin-top: 2rem;
+    }
+    .copyright{
+        width: 55%;
+    }
+    .subscription{
+            font-size: 1.5rem;
+        }
+}
+@media screen and (max-width:768px){
+    .productinfo p{
+        display: none;
+    }
 }

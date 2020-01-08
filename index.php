@@ -95,7 +95,11 @@
                     </Ol>
                 </div>
                 <div class="clear-both"></div>
-                <div class="learnmore clear-both"><div class="newsbtn"><a href="javascript:;">了解更多</a></div></div>
+                <div class="learnmore clear-both">
+                    <!-- <div class="newsbtn"> -->
+                    <a href="javascript:;"><button class="btn draw-border">了解更多</button></a>
+                <!-- </div> -->
+            </div>
             </div>
         </div>
         <div class="product">
@@ -171,7 +175,7 @@
                             <p>葡萄品種:Tempanillo</p>
                             <p>酒精濃度:12.5%vol</p>
                             <p>酒莊:Cristo de le Vega</p>
-                            <button>加入購物車</button> <button>更多 → </button>
+                            <button class="btn draw-border">加入購物車</button> <button class="btn draw-border">更多 → </button>
                         </div>
                     </div>
                     <div  class="productinfo">
@@ -184,7 +188,7 @@
                             <p>葡萄品種:50% Tempanillo & 50% Merlot</p>
                             <p>酒精濃度:12.5%vol</p>
                             <p>酒莊:Cristo de le Vega</p>
-                            <button>加入購物車</button> <button>更多 → </button>
+                            <button class="btn draw-border">加入購物車</button> <button class="btn draw-border">更多 → </button>
                         </div>
                     </div>
                     <div  class="productinfo">
@@ -196,7 +200,7 @@
                             <p>葡萄品種:Tempanillo</p>
                             <p>酒精濃度:12.5%vol</p>
                             <p>酒莊:Cristo de le Vega</p>
-                            <button>加入購物車</button> <button>更多 → </button>
+                            <button class="btn draw-border">加入購物車</button> <button class="btn draw-border">更多 → </button>
                     </div>
                     <div  class="productinfo">
                         <img src="images/04.png" width="100">
@@ -208,12 +212,16 @@
                             <p>葡萄品種:50% Tempanillo & 50% Merlot</p>
                             <p>酒精濃度:12.5%vol</p>
                             <p>酒莊:Cristo de le Vega</p>
-                            <button>加入購物車</button> <button>更多 → </button>
+                            <button class="btn draw-border">加入購物車</button> <button class="btn draw-border">更多 → </button>
                         </div>
                     </div>
                 </div>
                 <div class="clear-both"></div>
-                <div class="learnmore clear-both"><div class="newsbtn"><a href="javascript:;">了解更多</a></div></div>
+                <div class="learnmore clear-both">
+                    <!-- <div class="newsbtn"> -->
+                    <a href="javascript:;"><button class="btn draw-border">了解更多</button></a>
+                    <!-- </div> -->
+                </div>
             </div>
             </div>
         </div>
@@ -227,7 +235,7 @@
             <label for="subscription">訂閱電子報：
             </label>      
             <input id="subscription" name="subscription" type="text">
-            <button>訂閱</button>
+            <button class="btn draw-border">訂閱</button>
             </form>
         </div>
             <div class="footcolor">
@@ -304,19 +312,19 @@ $('.multiple-items').slick({
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 900,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1
       }
     },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
+    // {
+    //   breakpoint: 480,
+    //   settings: {
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1
+    //   }
+    // }
     // You can unslick at a given breakpoint now by adding:
     // settings: "unslick"
     // instead of a settings object

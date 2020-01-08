@@ -6,7 +6,7 @@
             <label for="subscription">訂閱電子報：
             </label>      
             <input id="subscription" name="subscription" type="text">
-            <button>訂閱</button>
+            <button class="btn draw-border">訂閱</button>
             </form>
         </div>
             <div class="footcolor">
@@ -56,7 +56,7 @@
 
     <script src="../js/jquery-1.11.0.min.js"></script>
     <script src="../js/jquery-ui/jquery-ui.min.js"></script>
-
+    <script src="../js/jquery.twzipcode.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script> -->
 <script src="../js/scripts.js"></script>

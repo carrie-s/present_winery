@@ -2,7 +2,7 @@
 <!-- <div class="toolbar">
     <div class="toolbar-center">
         <div class="customer">
-        <a>會員登入</a> | <a>加入會員</a> | <a>聯絡我們</a>
+        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
         </div>
     </div>
 </div> -->
