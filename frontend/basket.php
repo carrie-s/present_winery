@@ -1,5 +1,15 @@
 <?php
 session_start();
+require_once("../function/connection.php");
+
+$is_updated = "false";
+if(isset($_POST["quantity"]) && $_POST["quantity"] != null){
+    for($i=0; $i <count($_SESSION["cart"]); $i++){
+        $_SESSION['cart'][$i]["quantity"] = $_POST["quantity"][$i];
+    }
+    $is_updated = "true";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +72,8 @@ session_start();
 <div class="news-container">
 <div class="basket">
     <h2>我的購物清單</h2>
+    <?php if(isset($_SESSION['cart']) && $_SESSION['cart'] != null){ ?>
+    <p class="text-muted">目前有<?php echo count($_SESSION['cart']); ?>個未結帳商品</p>
     <table width="100%" >
         <tr>
             <th>圖片</th>
@@ -99,6 +111,11 @@ session_start();
         <button class="btn draw-border">更新購物車</button>
         <a href="check.php"><button class="btn draw-border">結帳去</button></a>
     </div>
+    <?php } else { ?>  
+        <br>
+        <h4>目前購物車沒有商品，請至<a href="productlist.php">產品專區</a>進行購物。</h4>  
+        <a href="productlist.php"><button class="btn draw-border">購物去</button></a>       
+    <?php } ?>
 </div>
 </div>
 <?php include_once("template/footer.php");?>
