@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,7 @@
 <body>
 <?php include_once("template/navbar.php");?>
 
-<header style="background-image: url('../images/abn(4)-1.jpg');">
+<header  data-aos="fade-down" style="background-image: url('../images/abn(4)-1.jpg');">
 <div class="toolbar">
     <div class="toolbar-center">
         <div class="customer">
@@ -23,7 +26,7 @@
         <img src="../images/logo-150.png" alt="logo">
     </div>
 </div>
-<div id="title-center">
+<div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>會員專區</h2>
 
@@ -85,32 +88,32 @@
                 <tbody>
                     <?php //foreach($orders as $order){ ?>
                     <tr>
-                        <td><?php// echo $order['order_no'];?></td>
-                        <td><?php// echo $order['order_date'];?></td>
-                        <td>$NT <?php// echo $order['total']+$order['shipping'];?></td>
-                        <?php// if ($order['status']==0){ ?>
+                        <td><?php // echo $order['order_no'];?></td>
+                        <td><?php // echo $order['order_date'];?></td>
+                        <td>$NT <?php // echo $order['total']+$order['shipping'];?></td>
+                        <?php // if ($order['status']==0){ ?>
                         <td><span class="label label-info">待付款</span>
-                        <?php// }elseif($order['status']==1){ ?>
+                        <?php // }elseif($order['status']==1){ ?>
                         <span class="label label-success">交易完成</span>
-                        <?php// }elseif($order['status']==2){ ?>
+                        <?php // }elseif($order['status']==2){ ?>
                         <span class="label label-danger">運送中</span>
-                        <?php// }elseif($order['status']==3){ ?>
+                        <?php // }elseif($order['status']==3){ ?>
                         <span class="label label-warning">出貨中</span>
-                        <?php// }elseif($order['status']==99){ ?>
+                        <?php // }elseif($order['status']==99){ ?>
                         <span class="label label-warning">取消訂單</span>
-                        <?php// } ?>
+                        <?php // } ?>
                         </td>
                         <td><a href="customer-order.php?customer_orderID=<?php //echo $order['customer_orderID'];?>&no=<?php echo $order['order_no'];?>" class="btn btn-primary btn-sm">觀看詳細</a>
                         </td>
                     </tr>
-                    <?php// } ?>
+                    <?php // } ?>
                 </tbody>
             </table>
         </div>
-        <?php// }else{ ?>    
+        <?php // }else{ ?>    
             <p>目前沒有訂單，請至<a href="productlist.php">產品專區</a>進行購物。</p>
             <p>若有任何問題，請至 <a href="contact.php">聯絡我們</a>填寫表單。</p>
-        <?php// } ?>
+        <?php // } ?>
         </div>
     </div>
 </div>

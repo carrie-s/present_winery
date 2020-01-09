@@ -1,7 +1,13 @@
-<footer >
+<?php 
+require_once("../function/connection.php");
+$query = $db ->query("SELECT * FROM product_categories");
+$category=$query ->fetchAll(PDO::FETCH_ASSOC);
+?>
 <div class="clear-both"></div>
+<footer data-aos="fade-up" data-aos-delay="200" >
+
         <div class="footer">
-        <div class="subscription">
+        <div class="subscription" data-aos="fade-up">
             <form action="">
             <label for="subscription">訂閱電子報：
             </label>      
@@ -14,14 +20,14 @@
                 <div class="ft-item">
                     <h4>會員專區</h4>
                     <ul>
-                        <li><a href="">加入會員</a></li>
+                        <li><a href="register.php">加入會員</a></li>
                         <li><a href="">會員登入</a></li>
                     </ul>
                 </div>
                 <div class="ft-item">
                     <h4>產品分類</h4>
                     <ul>
-                        <li><a href="">德國</a></li>
+                        <li><a href="productfilter.php?categoryID=<?php echo $category[0]['product_categoryID'] ?>">德國</a></li>
                         <li><a href="">西班牙</a></li>
                         <li><a href="">法國</a></li>
                         <li><a href="">義大利</a></li>
@@ -59,7 +65,14 @@
     <script src="../js/jquery.twzipcode.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script> -->
-<script src="../js/scripts.js"></script>
+<script src="../js/aos.js"></script>
+<!-- <script src="../js/scripts.js"></script> -->
+
+<script>
+  AOS.init({
+    duration:"1500",
+  });
+</script>
 <script>
 function myFunction(x) {
   x.classList.toggle("change");

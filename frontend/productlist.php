@@ -1,3 +1,10 @@
+<?php 
+session_start();
+require_once("../function/connection.php");
+$query = $db ->query("SELECT * FROM product_categories");
+$category=$query ->fetchAll(PDO::FETCH_ASSOC);
+// print_r($category);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +19,7 @@
 <body>
 <?php include_once("template/navbar.php");?>
 
-<header style="background-image: url('../images/ab-1.jpg');">
+<header  data-aos="fade-down" style="background-image: url('../images/ab-1.jpg');">
 <div class="toolbar">
     <div class="toolbar-center">
         <div class="customer">
@@ -25,7 +32,7 @@
         <img src="../images/logo-150.png" alt="logo">
     </div>
 </div>
-<div id="title-center">
+<div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>產品類別</h2>
 
@@ -59,7 +66,7 @@
 <div class="product_category">
   <div class="category" style="background-image:url('../images/germany1.jpg');">
   <div class="center-y">
-  <a href="productfilter.php">
+  <a href="productfilter.php?categoryID=<?php echo $category[0]['product_categoryID'] ?>">
     <h1>GERMANY</h1>
     <h2>德國系列</h2>
     </a>

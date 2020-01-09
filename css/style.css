@@ -18,15 +18,15 @@
 html{
     height: 100%;
     font-size: 16px;
-    width: 100%;
+    width: 100vw;
 }
 body{
     background-color: #0c0c0c;
     background-image: url("../images/buried.png");
     font-family: 'Noto Serif TC', serif;
     color: #FFF;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    /* overflow-y: scroll;
+    overflow-x: hidden; */
 }
 ul{
     list-style: none;
@@ -620,6 +620,8 @@ float: left;
 }
 .news-image img{
     width: 80%;
+    object-fit: cover;
+    max-height:50vh ;
 }
 /* news page end */
 /* productfilter page */
@@ -869,12 +871,10 @@ margin-left: 1rem;
 }
 .left {
   width: 100%;
-  height: 30%;
   padding: 1rem 1rem 5rem 1rem;
 }
 .slider {
   width: 100%;
-  height: 70%;
 }
 .design{
   height: auto;
@@ -929,9 +929,9 @@ text-align: center;
   float: none;
 }
 .product-outer {
-  width: 100%;
+  width: 50%;
   margin: auto;
-  float: none;
+  float: left;
 }
 .product-left {
   width: 100%;
@@ -942,6 +942,19 @@ text-align: center;
 }
 }
 @media screen and (max-width:459px){
+  .toolbar {
+    display: none;
+  }
+  .bar {
+    position: fixed;
+    top: 0;
+    z-index: 101;
+    background-color: hsl(345, 100%, 25%,0.5);
+}
+header {
+  top: 85px;
+  margin-bottom: 4rem;
+}
   .product_category {
     width: 90%;
     height: 100%;
@@ -955,6 +968,56 @@ text-align: center;
   width: 90%;
 
 }
+.product-outer {
+  width: 100%;
+  float: none;
+}
+.menu-wrap {
+  left: 0;
+  z-index: 100;
+  display: none;
+  /* filter: drop-shadow(2px 0px 5px #333); */
+}
+.menu-outer {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  -webkit-clip-path:none;
+  clip-path: none;
+  position: relative;
+}
+.menu{
+  width:90vw;
+  height:90vh;
+  background-color: #800020;
+  -webkit-clip-path:none;
+  clip-path:none;
+  left:5vw;
+  top:5vh;
+  }
+  .menu-inner{
+  width:89vw;
+  height:89vh;
+  background-color: #000;
+  -webkit-clip-path:none;
+  clip-path:none;
+  position: absolute;
+  left:0.5vw;
+  top:0.5vh;
+  }
+  .web-logo img{
+    display: none;
 
+  }
+  .news-container {
+    margin-top: 30rem;
+}
+.position {
+  margin-top: 30rem;
+}
+.product_category {
+
+  margin-top: 30rem;
+}
 
 }

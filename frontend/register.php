@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,7 @@
 <body>
 <?php include_once("template/navbar.php");?>
 
-<header style="background-image: url('../images/abn(4).jpg');">
+<header  data-aos="fade-down" style="background-image: url('../images/abn(4).jpg');">
 <div class="toolbar">
     <div class="toolbar-center">
         <div class="customer">
@@ -23,7 +26,7 @@
         <img src="../images/logo-150.png" alt="logo">
     </div>
 </div>
-<div id="title-center">
+<div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>註冊/登入會員</h2>
 

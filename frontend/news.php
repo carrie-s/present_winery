@@ -1,3 +1,9 @@
+<?php 
+session_start();
+require_once("../function/connection.php");
+$query = $db ->query("SELECT * FROM news WHERE newsID=".$_GET["newsID"]);
+$one_news = $query -> fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +16,7 @@
 <body>
 <?php include_once("template/navbar.php");?>
 
-<header style="background-image: url('../images/ab-1.jpg');">
+<header  data-aos="fade-down" style="background-image: url('../images/ab-1.jpg');">
 <div class="toolbar">
     <div class="toolbar-center">
         <div class="customer">
@@ -23,7 +29,7 @@
         <img src="../images/logo-150.png" alt="logo">
     </div>
 </div>
-<div id="title-center">
+<div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>最新消息</h2>
 
@@ -58,13 +64,13 @@
 
       <div class="news-outer">
         <div class="news-image">
-          <img src="../images/abn(6).jpg" alt="">
+          <img src="../uploads/news/<?php echo $one_news["picture"]; ?>" alt="">
         </div>
         <div class="newscontent">
-          <h2>文章標題</h2>
-          <p>2020/01/07</p>
+          <h2><?php echo $one_news["title"]; ?></h2>
+          <p><?php echo $one_news["published_at"]; ?></p>
           
-          <p>文章內容在這裡</p>
+          <p><?php echo $one_news["content"]; ?></p>
         </div>
       </div>
       <div class="filter-right">

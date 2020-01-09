@@ -29,9 +29,10 @@ $Total_Rows=count($products);
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th>商品圖片</th>
-                  <th>商品名稱</th>
-                  <th>商品金額</th>
+                  <th>圖片</th>
+                  <th>名稱</th>
+                  <th>年份</th>
+                  <th>金額</th>
                   <th>操作</th>
                 </tr>
               </thead>
@@ -39,8 +40,9 @@ $Total_Rows=count($products);
                 <?php if ($Total_Rows>0){?>
                 <?php foreach ($products as $data){ ?>
                 <tr>
-                  <td><img src="../../uploads/products/<?php echo $data["picture"]?>" width="200" alt=""></td>
+                  <td><img src="../../uploads/products/<?php echo $data["picture"]?>" height="150" alt=""></td>
                   <td><?php echo $data["name"]; ?></td>
+                  <td><?php echo $data["vintage"]; ?></td>
                   <td><?php echo $data["price"]; ?></td>
                   <td>
                     <a class="btn btn-light" href="update.php?level1_ID=<?php echo $_GET['level1_ID']?>&name=<?php echo $_GET['name']?>&productID=<?php echo $data["productID"]?>&productname=<?php echo $data["name"]?>">編輯</a>

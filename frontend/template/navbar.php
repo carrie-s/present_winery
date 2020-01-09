@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="bar">
+    <div class="bar" data-aos="fade-left">
         <div class="icontool">
             <div class="cart">
                 <a href="basket.php"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a>

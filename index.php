@@ -1,22 +1,34 @@
+<?php 
+session_start();
+require_once("function/connection.php");
+$query = $db ->query("SELECT * FROM product_categories");
+$category=$query ->fetchAll(PDO::FETCH_ASSOC);
+$query1=$db->query("SELECT * FROM news ORDER BY published_at DESC limit 4");
+$news=$query1->fetchAll(PDO::FETCH_ASSOC);
+$query2=$db->query("SELECT * FROM products ORDER BY created_at DESC LIMIT 10");
+$products=$query2->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Present Winery</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">  
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+    <link href="css/aos/styles.css" rel="stylesheet">
+    <link href="css/aos/aos.css" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/> 
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 <div >
-    <header >
+    <header  >
     <div class="web-logo">
         <div class="logo-block">
         <img src="images/logo-150.png" alt="logo">
@@ -40,10 +52,10 @@
             </div>
         </div>
     </div>
-    <div class="bar">
+    <div class="bar" data-aos="fade-left">
         <div class="icontool">
             <div class="cart">
-                <a href="frontend/basker.php"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a>
+                <a href="frontend/basket.php"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a>
             </div>
             <div class="user">
             <a href="frontend/register.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
@@ -55,38 +67,38 @@
             </div>
         </div>
      </div>
-     <div id="wine">
+     <div id="wine" data-aos="zoom-out" data-aos-duration="2000">
         <img src="images/01.png" alt="winery">
     </div>
     </header>
     <section>
         <div class="ns-block" >
-            <div class="ns-title">
+            <div class="ns-title" data-aos="fade-up">
                 <img class="ns-titleimg" src="images/news2.png" alt="news">
                 <!-- <span>最 新 消 息</span> -->
             </div>
-            <div class="ns-content">
-                <div id="newsimg" class="news-item">
+            <div class="ns-content" >
+                <div id="newsimg" class="news-item" data-aos="fade-right">
                     <img id="newribbon" src="images/newribbon1.png" alt="newribbon">
-                    <img src="images/02.jpg" width="100%" height="auto">
+                    <img src="uploads/news/<?php echo $news[0]['picture'];?>" style="width:100%;max-height:50vh;object-fit: cover;">
                 </div>
                 <div class="newstext">
-                    <p class="newstitle">2020終極大福箱</p>
-                    <p>酒瓶子一年一度最大盛事，大福箱開始預購！越是不景氣，越要反向操作，去年大福箱獎品總額15萬，今年直接拉到20萬，老樣子，大家開心最重要！</p>
+                    <p class="newstitle"><?php echo $news[0]['title'];?></p>
+                    <p><?php echo mb_strimwidth(strip_tags($news[0]['content']), 0 , 150, "...");?></p>
                 </div>
                 <div class="news-item">
                     <Ol class="list">
-                        <li class="item">
-                            <h2 class="headline">2020尾牙春酒精選</h2>
-                            <span>單瓶滿12瓶免運，或與其他活動或組合合購，滿12瓶也可以享箱價優惠唷！</span>
+                        <li class="item" data-aos="fade-left" data-aos-delay="200">
+                            <h2 class="headline"><?php echo $news[1]['title'];?></h2>
+                            <span><?php echo mb_strimwidth(strip_tags($news[1]['content']), 0 , 150, "...");?></span>
                         </li>
-                        <li class="item">
-                            <h2 class="headline">絕版熟成聖夜喬治一級園</h2>
-                            <span>絕版酒不是重點，而是現在07年熟得完美！鮮明的紅花香，紅莓、黑莓香氣交錯，口感飽滿完整，12年熟成的細緻口感，加上回味的礦石感與細緻香料提示，好一支巔峰熟成的勃根地~</span>
+                        <li class="item" data-aos="fade-left" data-aos-delay="400">
+                            <h2 class="headline"><?php echo $news[2]['title'];?></h2>
+                            <span><?php echo mb_strimwidth(strip_tags($news[2]['content']), 0 , 150, "...");?></span>
                         </li>
-                        <li class="item">
-                            <h2 class="headline">夏日白酒節組</h2>
-                            <span>每年夏天酒瓶子都會推出白酒組，每年都受到各位酒友的好評，再次感謝大家，今年的白酒節再升級！</span>
+                        <li class="item" data-aos="fade-left" data-aos-delay="600">
+                            <h2 class="headline"><?php echo $news[3]['title'];?></h2>
+                            <span><?php echo mb_strimwidth(strip_tags($news[3]['content']), 0 , 150, "...");?></span>
                         </li>
                         <!-- <li class="item">
                             <h2 class="headline"></h2>
@@ -95,92 +107,41 @@
                     </Ol>
                 </div>
                 <div class="clear-both"></div>
-                <div class="learnmore clear-both">
+                <div class="learnmore clear-both" data-aos="fade-up">
                     <!-- <div class="newsbtn"> -->
-                    <a href="javascript:;"><button class="btn draw-border">了解更多</button></a>
+                    <a href="frontend/newslist.php"><button class="btn draw-border">了解更多</button></a>
                 <!-- </div> -->
             </div>
             </div>
         </div>
         <div class="product">
-            <div class="ns-title">
+            <div class="ns-title" data-aos="fade-up">
                 <img class="ns-titleimg" src="images/hotproducts.png" alt="hotproducts">
             </div>
             <div class="pd-content">
-                <!-- <div class="pd-item" style="text-align: right;">
-                    <span style="font-size:7rem;position:absolute;font-weight:bold;left:15%;opacity:0.2;z-index:-1;font-family:Arial Black;">BEST<br>SELLER</span>
-                    <img src="images/01.png" width="20%">
-                </div>
-                <div class="pd-item">
-                    <h2>Camina Tempanillo</h2>
-                    <p>年份:2015</p>
-                    <p>產地:西班牙</p>
-                    <p>容量:750ml</p>
-                    <p>葡萄品種:Tempanillo</p>
-                    <p>酒精濃度:12.5%vol</p>
-                    <p>酒莊:Cristo de le Vega</p>
-                    <button>加入購物車</button>
-                </div> -->
-                <!-- <div id="main-product" class="clear-both " style="">
-                    <span style="font-size:7rem;position:absolute;font-weight:bold;left:15%;opacity:0.2;z-index:-1;font-family:Arial Black;text-align:right;">BEST<br>SELLER</span>
-                    <div class="slider-for">
-                        <div class="productinfo">
-                            <img src="images/01.png" width="100">
-                            <div>
-                                <h2>Camina Tempanillo</h2>
-                                <p>年份:2015</p>
-                                <p>產地:西班牙</p>
-                                <p>容量:750ml</p>
-                                <p>葡萄品種:Tempanillo</p>
-                                <p>酒精濃度:12.5%vol</p>
-                                <p>酒莊:Cristo de le Vega</p>
-                                <button>加入購物車</button>
-                            </div>
-                        </div>
-                        <div class="productinfo">
-                            <img src="images/02.png" width="100">
-                            <div>
-                                <h2>--------</h2>
-                                <p>年份:2015</p>
-                                <p>產地:西班牙</p>
-                                <p>容量:750ml</p>
-                                <p>葡萄品種:Tempanillo</p>
-                                <p>酒精濃度:12.5%vol</p>
-                                <p>酒莊:Cristo de le Vega</p>
-                                <button>加入購物車</button>
-                            </div>
-                        </div>
-                        <div><img src="images/03.png" width="100"></div>
-                        <div><img src="images/04.png" width="100"></div>
-                    </div>
-                </div> -->
-                <!-- <div class="pd-item">
-                    <h2>Camina Tempanillo</h2>
-                    <p>年份:2015</p>
-                    <p>產地:西班牙</p>
-                    <p>容量:750ml</p>
-                    <p>葡萄品種:Tempanillo</p>
-                    <p>酒精濃度:12.5%vol</p>
-                    <p>酒莊:Cristo de le Vega</p>
-                    <button>加入購物車</button>
-                </div> -->
                 <div class="multiple-items clear-both">
-                    <div  class="productinfo">
-                        <img src="images/01.png" width="100">
-                        <div>
-                            <h2>Camina Tempanillo</h2>
-                            <p>年份:2015</p>
+                <?php foreach($products as $product){ ?>
+                    <div  class="productinfo" data-aos="fade-up">
+                    <a href="frontend/product.php?categoryID=<?php echo $product["product_categoryID"]; ?>&productID=<?php echo $product["productID"]; ?>">
+                        <img src="uploads/products/<?php echo $product["picture"]; ?>" width="100">
+                    </a>
+                        <div data-aos="fade-up">
+                            <h2><?php echo $product["name"]; ?></h2>
+                            <p>年份:<?php echo $product["vintage"]; ?></p>
                             <p>產地:西班牙</p>
-                            <p>容量:750ml</p>
-                            <p>葡萄品種:Tempanillo</p>
-                            <p>酒精濃度:12.5%vol</p>
+                            <p>容量:<?php echo $product["bottle_size"]; ?></p>
+                            <p>葡萄品種:<?php echo $product["varietal"]; ?></p>
+                            <p>酒精濃度:<?php echo $product["alcohol"]; ?></p>
                             <p>酒莊:Cristo de le Vega</p>
-                            <button class="btn draw-border">加入購物車</button> <button class="btn draw-border">更多 → </button>
+                            <button class="btn draw-border">加入購物車
+
+                            </button> <a href="frontend/product.php?categoryID=<?php echo $product["product_categoryID"]; ?>&productID=<?php echo $product["productID"]; ?>"><button class="btn draw-border">更多 → </button></a>
                         </div>
                     </div>
-                    <div  class="productinfo">
+                <?php } ?>
+                    <div  class="productinfo" data-aos="fade-up">
                         <img src="images/02.png" width="100">
-                        <div>
+                        <div data-aos="fade-up">
                             <h2>Valderba TM 2014</h2>
                             <p>年份:2014</p>
                             <p>產地:西班牙</p>
@@ -191,8 +152,9 @@
                             <button class="btn draw-border">加入購物車</button> <button class="btn draw-border">更多 → </button>
                         </div>
                     </div>
-                    <div  class="productinfo">
+                    <div  class="productinfo" data-aos="fade-up">
                         <img src="images/03.png" width="100">
+                        <div data-aos="fade-up">
                         <h2>Camina Tempanillo</h2>
                             <p>年份:2015</p>
                             <p>產地:西班牙</p>
@@ -201,10 +163,11 @@
                             <p>酒精濃度:12.5%vol</p>
                             <p>酒莊:Cristo de le Vega</p>
                             <button class="btn draw-border">加入購物車</button> <button class="btn draw-border">更多 → </button>
+                        </div>    
                     </div>
-                    <div  class="productinfo">
+                    <div  class="productinfo" data-aos="fade-up">
                         <img src="images/04.png" width="100">
-                        <div>
+                        <div data-aos="fade-up">
                             <h2>Valderba TM 2014</h2>
                             <p>年份:2014</p>
                             <p>產地:西班牙</p>
@@ -217,9 +180,9 @@
                     </div>
                 </div>
                 <div class="clear-both"></div>
-                <div class="learnmore clear-both">
+                <div class="learnmore clear-both" data-aos="fade-up">
                     <!-- <div class="newsbtn"> -->
-                    <a href="javascript:;"><button class="btn draw-border">了解更多</button></a>
+                    <a href="frontend/productfilter.php"><button class="btn draw-border">了解更多</button></a>
                     <!-- </div> -->
                 </div>
             </div>
@@ -227,12 +190,12 @@
         </div>
 
     </section>
-    <footer >
+    <footer data-aos="fade-up" data-aos-delay="200" >
         
-        <div class="footer">
-        <div class="subscription">
+        <div class="footer"  >
+        <div class="subscription" data-aos="fade-up" >
             <form action="">
-            <label for="subscription">訂閱電子報：
+            <label for="subscription" >訂閱電子報：
             </label>      
             <input id="subscription" name="subscription" type="text">
             <button class="btn draw-border">訂閱</button>
@@ -243,14 +206,14 @@
                 <div class="ft-item">
                     <h4>會員專區</h4>
                     <ul>
-                        <li><a href="">加入會員</a></li>
+                        <li><a href="frontend/register.php">加入會員</a></li>
                         <li><a href="">會員登入</a></li>
                     </ul>
                 </div>
                 <div class="ft-item">
                     <h4>產品分類</h4>
                     <ul>
-                        <li><a href="">德國</a></li>
+                        <li><a href="productfilter.php?categoryID=<?php echo $category[0]['product_categoryID'] ?>">德國</a></li>
                         <li><a href="">西班牙</a></li>
                         <li><a href="">法國</a></li>
                         <li><a href="">義大利</a></li>
@@ -270,7 +233,7 @@
         </div>
         </div>
         <div class="clear-both"></div>
-        <div class="design">
+        <div class="design" >
             <div class="design-center">
                 <div class="copyright">
                 Copyright © 2020 PRESENT WINERY All Right Reserved.
@@ -285,6 +248,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="slick/slick.min.js"></script>
+  <script src="js/aos.js"></script>
 
   <script type="text/javascript">
 // $('.multiple-items').slick({
@@ -318,20 +282,25 @@ $('.multiple-items').slick({
         slidesToScroll: 1
       }
     },
-    // {
-    //   breakpoint: 480,
-    //   settings: {
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1
-    //   }
-    // }
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: false,
+      }
+    }
     // You can unslick at a given breakpoint now by adding:
     // settings: "unslick"
     // instead of a settings object
   ]
 });
   </script>
-
+<script>
+  AOS.init({
+    duration:"1500",
+  });
+</script>
 <script>
 function myFunction(x) {
   x.classList.toggle("change");

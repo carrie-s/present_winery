@@ -16,34 +16,42 @@ if(isset($_POST["AddForm"]) && $_POST["AddForm"] == "INSERT"){
   }else{
     $filename=null;
   }
-  if(isset($_FILES["picture1"]["name"])&& $_FILES["picture1"]["name"] != null){
-    $filename1=$_FILES['picture1']['name'];
-    $file_path="../../uploads/products/".$_FILES['picture1']['name'];
-    move_uploaded_file($_FILES["picture1"]["tmp_name"],$file_path);
-  }else{
-    $filename1=null;
-  }
-  if(isset($_FILES["picture2"]["name"])&& $_FILES["picture2"]["name"] != null){
-    $filename2=$_FILES['picture2']['name'];
-    $file_path="../../uploads/products/".$_FILES['picture2']['name'];
-    move_uploaded_file($_FILES["picture2"]["tmp_name"],$file_path);
-  }else{
-    $filename2=null;
-  }
+  // if(isset($_FILES["picture1"]["name"])&& $_FILES["picture1"]["name"] != null){
+  //   $filename1=$_FILES['picture1']['name'];
+  //   $file_path="../../uploads/products/".$_FILES['picture1']['name'];
+  //   move_uploaded_file($_FILES["picture1"]["tmp_name"],$file_path);
+  // }else{
+  //   $filename1=null;
+  // }
+  // if(isset($_FILES["picture2"]["name"])&& $_FILES["picture2"]["name"] != null){
+  //   $filename2=$_FILES['picture2']['name'];
+  //   $file_path="../../uploads/products/".$_FILES['picture2']['name'];
+  //   move_uploaded_file($_FILES["picture2"]["tmp_name"],$file_path);
+  // }else{
+  //   $filename2=null;
+  // }
 
-  $sql = "INSERT INTO products (product_categoryID, picture,picture1,picture2, name, price, description, created_at) VALUES (:product_categoryID, :picture,:picture1,:picture2, :name, :price, :description, :created_at)";
+  $sql = "INSERT INTO products (product_categoryID, picture, name, price, description, vintage, bottle_size, varietal, acid, ph, residual_sugar, alcohol, created_at) VALUES (:product_categoryID, :picture, :name, :price, :description, :vintage, :bottle_size,	:varietal, :acid, :ph, :residual_sugar,	:alcohol, :created_at)";
   $sth=$db->prepare($sql);
   $sth->bindparam(":product_categoryID",$_POST['product_categoryID'],PDO::PARAM_INT);
   $sth->bindparam(":picture",$filename,PDO::PARAM_STR);
-  $sth->bindparam(":picture1",$filename1,PDO::PARAM_STR);
-  $sth->bindparam(":picture2",$filename2,PDO::PARAM_STR);
+  // $sth->bindparam(":picture1",$filename1,PDO::PARAM_STR);
+  // $sth->bindparam(":picture2",$filename2,PDO::PARAM_STR);
   $sth->bindparam(":name",$_POST["name"],PDO::PARAM_STR);
   $sth->bindparam(":price",$_POST["price"],PDO::PARAM_STR);
   $sth->bindparam(":description",$_POST["description"],PDO::PARAM_STR);
+  $sth->bindparam(":vintage",$_POST["vintage"],PDO::PARAM_STR);
+  $sth->bindparam(":acid",$_POST["acid"],PDO::PARAM_STR);
+  $sth->bindparam(":ph",$_POST["ph"],PDO::PARAM_STR);
+  $sth->bindparam(":residual_sugar",$_POST["residual_sugar"],PDO::PARAM_STR);
+  $sth->bindparam(":alcohol",$_POST["alcohol"],PDO::PARAM_STR);
+  $sth->bindparam(":bottle_size",$_POST["bottle_size"],PDO::PARAM_STR);
+  $sth->bindparam(":varietal",$_POST["varietal"],PDO::PARAM_STR);
   $sth->bindparam(":created_at",$_POST["created_at"],PDO::PARAM_STR);
+  
   $sth->execute();
 
-  header("Location: list.php?level1_ID=".$_POST['product_categoryID']."&name=".$_POST["category"]);
+   header("Location: list.php?level1_ID=".$_POST['product_categoryID']."&name=".$_POST["category"]);
 }
 ?>
 
@@ -68,18 +76,18 @@ if(isset($_POST["AddForm"]) && $_POST["AddForm"] == "INSERT"){
             <li class="breadcrumb-item active">新增一筆</li>
           </ul>
           <form id="products_create" class="text-right" method="post" action="create.php" enctype="multipart/form-data">
-            <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">產品圖片一</label>
+            <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">產品圖片</label>
               <div class="col-10">
                 <input type="file" class="form-control-file" id="inputmailh" name="picture"> </div>
             </div>
-            <div class="form-group row"> <label for="picture1" class="col-2 col-form-label">產品圖片二</label>
+            <!-- <div class="form-group row"> <label for="picture1" class="col-2 col-form-label">產品圖片二</label>
               <div class="col-10">
                 <input type="file" class="form-control-file" id="picture1" name="picture1"> </div>
             </div>
             <div class="form-group row"> <label for="picture2" class="col-2 col-form-label">產品圖片三</label>
               <div class="col-10">
                 <input type="file" class="form-control-file" id="picture2" name="picture2"> </div>
-            </div>
+            </div> -->
             <div class="form-group row"> <label for="name" class="col-2 col-form-label">產品名稱</label>
               <div class="col-10">
                 <input type="text" class="form-control" id="name" name="name"> </div>
@@ -87,6 +95,34 @@ if(isset($_POST["AddForm"]) && $_POST["AddForm"] == "INSERT"){
             <div class="form-group row"> <label for="price" class="col-2 col-form-label">產品金額</label>
               <div class="col-10">
                 <input type="text" class="form-control" id="price" name="price"> </div>
+            </div>
+            <div class="form-group row"> <label for="vintage" class="col-2 col-form-label">年份</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="vintage" name="vintage"> </div>
+            </div>
+            <div class="form-group row"> <label for="bottle_size" class="col-2 col-form-label">容量</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="bottle_size" name="bottle_size"> </div>
+            </div>
+            <div class="form-group row"> <label for="varietal" class="col-2 col-form-label">品種</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="varietal" name="varietal"> </div>
+            </div>
+            <div class="form-group row"> <label for="acid" class="col-2 col-form-label">酸度</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="acid" name="acid"> </div>
+            </div>
+            <div class="form-group row"> <label for="ph" class="col-2 col-form-label">PH值</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="ph" name="ph"> </div>
+            </div>
+            <div class="form-group row"> <label for="residual_sugar" class="col-2 col-form-label">殘留糖份</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="residual_sugar" name="residual_sugar"> </div>
+            </div>
+            <div class="form-group row"> <label for="alcohol" class="col-2 col-form-label">酒精濃度</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="alcohol" name="alcohol"> </div>
             </div>
             <div class="form-group row">
               <label for="description" class="col-2">產品說明</label>

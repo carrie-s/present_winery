@@ -13,28 +13,36 @@ if(isset($_POST["EditForm"]) && $_POST["EditForm"] == "UPDATE"){
    }else{
     $filename=$_POST["old_picture"];
    }
-   if(isset($_FILES["picture1"]["name"])&& $_FILES["picture1"]["name"] != null){
-    $filename1=$_FILES['picture1']['name'];
-    $file_path="../../uploads/products/".$_FILES['picture1']['name'];
-    move_uploaded_file($_FILES["picture1"]["tmp_name"],$file_path);
-  }else{
-    $filename1=$_POST["old_picture1"];
-  }
-  if(isset($_FILES["picture2"]["name"])&& $_FILES["picture2"]["name"] != null){
-    $filename2=$_FILES['picture2']['name'];
-    $file_path="../../uploads/products/".$_FILES['picture2']['name'];
-    move_uploaded_file($_FILES["picture2"]["tmp_name"],$file_path);
-  }else{
-    $filename2=$_POST["old_picture2"];
-  } 
-  $sql="UPDATE products SET picture=:picture,picture1=:picture1,picture2=:picture2, name=:name, price=:price, updated_at=:updated_at WHERE productID=:productID";
+  //  if(isset($_FILES["picture1"]["name"])&& $_FILES["picture1"]["name"] != null){
+  //   $filename1=$_FILES['picture1']['name'];
+  //   $file_path="../../uploads/products/".$_FILES['picture1']['name'];
+  //   move_uploaded_file($_FILES["picture1"]["tmp_name"],$file_path);
+  // }else{
+  //   $filename1=$_POST["old_picture1"];
+  // }
+  // if(isset($_FILES["picture2"]["name"])&& $_FILES["picture2"]["name"] != null){
+  //   $filename2=$_FILES['picture2']['name'];
+  //   $file_path="../../uploads/products/".$_FILES['picture2']['name'];
+  //   move_uploaded_file($_FILES["picture2"]["tmp_name"],$file_path);
+  // }else{
+  //   $filename2=$_POST["old_picture2"];
+  // } 
+  $sql="UPDATE products SET picture=:picture, name=:name, price=:price, description=:description, vintage=:vintage, bottle_size=:bottle_size, varietal=:varietal, acid=:acid, ph=:ph, residual_sugar=:residual_sugar, alcohol=:alcohol, updated_at=:updated_at WHERE productID=:productID";
   $sth=$db->prepare($sql);
   $sth->bindParam(":picture",$filename,PDO::PARAM_STR);
-  $sth->bindParam(":picture1",$filename1,PDO::PARAM_STR);
-  $sth->bindParam(":picture2",$filename2,PDO::PARAM_STR);
+  // $sth->bindParam(":picture1",$filename1,PDO::PARAM_STR);
+  // $sth->bindParam(":picture2",$filename2,PDO::PARAM_STR);
   $sth->bindParam(":name",$_POST["name"],PDO::PARAM_STR);
   $sth->bindParam(":price",$_POST["price"],PDO::PARAM_STR);
   $sth->bindParam(":updated_at",$_POST['updated_at'],PDO::PARAM_STR);
+  $sth->bindparam(":description",$_POST["description"],PDO::PARAM_STR);
+  $sth->bindparam(":vintage",$_POST["vintage"],PDO::PARAM_STR);
+  $sth->bindparam(":acid",$_POST["acid"],PDO::PARAM_STR);
+  $sth->bindparam(":ph",$_POST["ph"],PDO::PARAM_STR);
+  $sth->bindparam(":residual_sugar",$_POST["residual_sugar"],PDO::PARAM_STR);
+  $sth->bindparam(":alcohol",$_POST["alcohol"],PDO::PARAM_STR);
+  $sth->bindparam(":bottle_size",$_POST["bottle_size"],PDO::PARAM_STR);
+  $sth->bindparam(":varietal",$_POST["varietal"],PDO::PARAM_STR);
   $sth->bindParam(":productID",$_POST["productID"],PDO::PARAM_INT);
   $sth->execute();
 
@@ -66,24 +74,24 @@ if(isset($_POST["EditForm"]) && $_POST["EditForm"] == "UPDATE"){
             <li class="breadcrumb-item active">編輯<?php echo $_GET["productname"];?></li>
           </ul>
           <form id="products_update" class="text-right" method="post" action="update.php" enctype="multipart/form-data">
-            <div class="form-group row"> <label for="picture" class="col-2 col-form-label">產品圖片一</label>
+            <div class="form-group row"> <label for="picture" class="col-2 col-form-label">產品圖片</label>
               <div class="col-10 text-left">
                 <img class="mb-2" src="../../uploads/products/<?php echo $one_products["picture"]?>" width="200" alt="">
                 <input type="hidden" name="old_picture" value="<?php echo $one_products['picture'];?>">  
                 <input type="file" class="form-control-file" id="picture" name="picture"> </div>
             </div>
-            <div class="form-group row"> <label for="picture1" class="col-2 col-form-label">產品圖片二</label>
+            <!-- <div class="form-group row"> <label for="picture1" class="col-2 col-form-label">產品圖片二</label>
               <div class="col-10 text-left">
-                <img class="mb-2" src="../../uploads/products/<?php echo $one_products["picture1"]?>" width="200" alt="">
-                <input type="hidden" name="old_picture1" value="<?php echo $one_products['picture1'];?>">  
+                <img class="mb-2" src="../../uploads/products/<?php // echo $one_products["picture1"]?>" width="200" alt="">
+                <input type="hidden" name="old_picture1" value="<?php // echo $one_products['picture1'];?>">  
                 <input type="file" class="form-control-file" id="picture1" name="picture1"> </div>
             </div>
             <div class="form-group row"> <label for="picture2" class="col-2 col-form-label">產品圖片三</label>
               <div class="col-10 text-left">
-                <img class="mb-2" src="../../uploads/products/<?php echo $one_products["picture2"]?>" width="200" alt="">
-                <input type="hidden" name="old_picture2" value="<?php echo $one_products['picture2'];?>">  
+                <img class="mb-2" src="../../uploads/products/<?php // echo $one_products["picture2"]?>" width="200" alt="">
+                <input type="hidden" name="old_picture2" value="<?php // echo $one_products['picture2'];?>">  
                 <input type="file" class="form-control-file" id="picture2" name="picture2"> </div>
-            </div>
+            </div> -->
             <div class="form-group row"> <label for="name" class="col-2 col-form-label">產品名稱</label>
               <div class="col-10">
                 <input type="text" class="form-control" id="name"  name="name" value="<?php echo $one_products["name"]?>"> </div>
@@ -91,6 +99,34 @@ if(isset($_POST["EditForm"]) && $_POST["EditForm"] == "UPDATE"){
             <div class="form-group row"> <label for="price" class="col-2 col-form-label">產品金額</label>
               <div class="col-10">
                 <input type="text" class="form-control" id="price" name="price" value="<?php echo $one_products["price"]?>"> </div>
+            </div>
+            <div class="form-group row"> <label for="vintage" class="col-2 col-form-label">年份</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="vintage" name="vintage" value="<?php echo $one_products["vintage"]?>"> </div>
+            </div>
+            <div class="form-group row"> <label for="bottle_size" class="col-2 col-form-label">容量</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="bottle_size" name="bottle_size" value="<?php echo $one_products["bottle_size"]?>"> </div>
+            </div>
+            <div class="form-group row"> <label for="varietal" class="col-2 col-form-label">品種</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="varietal" name="varietal" value="<?php echo $one_products["varietal"]?>"> </div>
+            </div>
+            <div class="form-group row"> <label for="acid" class="col-2 col-form-label">酸度</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="acid" name="acid" value="<?php echo $one_products["acid"]?>"> </div>
+            </div>
+            <div class="form-group row"> <label for="ph" class="col-2 col-form-label" >PH值</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="ph" name="ph" value="<?php echo $one_products["ph"]?>"> </div>
+            </div>
+            <div class="form-group row"> <label for="residual_sugar" class="col-2 col-form-label">殘留糖份</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="residual_sugar" name="residual_sugar" value="<?php echo $one_products["residual_sugar"]?>"> </div>
+            </div>
+            <div class="form-group row"> <label for="alcohol" class="col-2 col-form-label">酒精濃度</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="alcohol" name="alcohol" value="<?php echo $one_products["alcohol"]?>"> </div>
             </div>
             <div class="form-group row">
               <label for="description" class="col-2">產品說明</label>
