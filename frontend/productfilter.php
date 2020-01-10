@@ -81,19 +81,28 @@ $category=$query1 ->fetchAll(PDO::FETCH_ASSOC);
       <div class="productlist">
       <?php foreach($products as $one_product){ ?>
         <div class="product-outer">
-          <div class="product">
-            <div class="product-img">
-              <a href="product.php?categoryID=<?php echo $one_product['product_categoryID'] ?>&productID=<?php echo $one_product['productID'] ?>">              
-                <img src="../uploads/products/<?php echo $one_product["picture"]; ?>" alt="<?php echo $one_product["name"]; ?>">
-              </a>
-            </div>
-            <div class="product-content">
-              <h2><?php echo $one_product["name"]; ?></h2>    
-              <p><?php echo $one_product["vintage"]; ?></p>
+        <form action="cart/add_cart.php" method="post">
+            <div class="product">
+              <div class="product-img">
+                <a href="product.php?categoryID=<?php echo $one_product['product_categoryID'] ?>&productID=<?php echo $one_product['productID'] ?>">              
+                  <img src="../uploads/products/<?php echo $one_product["picture"]; ?>" alt="<?php echo $one_product["name"]; ?>">
+                </a>
+              </div>
+              <div class="product-content">
+                <h2><?php echo $one_product["name"]; ?></h2>    
+                <h3><?php echo $one_product["vintage"]; ?></h3>
 
-              <button class="btn draw-border">加入購物車</button>
+                <input type="hidden" name="pic" value="<?php echo $one_product["picture"]; ?>">
+                <input type="hidden" name="product_name" value="<?php echo $one_product["name"]; ?>">
+                <input type="hidden" name="price" value="<?php echo $one_product["price"]; ?>">
+                <input type="hidden" name="productID" value="<?php echo $one_product["productID"]; ?>">
+                <input type="hidden" name="categoryID" value="<?php echo $one_product["product_categoryID"]; ?>">
+                <input type="hidden" name="vintage" value="<?php echo $one_product["vintage"]; ?>">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="btn draw-border">加入購物車</button>
+              </div>
             </div>
-          </div>
+        </form>
           <div class="clear-both"></div>
         </div>
         <?php } ?>
@@ -114,5 +123,41 @@ $category=$query1 ->fetchAll(PDO::FETCH_ASSOC);
           
 </div>
 <?php include_once("template/footer.php");?>
+
+<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="info" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">訊息</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p class="text-center text-muted changeword">成功更新數量!</p>
+                <button style="background:#800020;" type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+            </div>
+        </div>
+    </div>
+</div>      
+
+<?php if(isset($_GET['Existed']) && $_GET["Existed"] == "true"){ ?>
+    <script>
+    $(function(){
+        $(".changeword").html("此商品已存在購物車，請至「我的購物車」修改數量。");
+        $("#info-modal").modal();
+    });
+    </script>
+<?php }else if(isset($_GET['Existed']) && $_GET["Existed"] == "false"){ ?>
+    <script>
+    $(function(){
+        $(".changeword").html("成功加入購物車!");
+        $("#info-modal").modal();
+        setTimeout(function(){
+           $("#info-modal").modal("hide");
+        }, 2000);
+    });
+    </script>
+
+<?php } ?>
 </body>
 </html>

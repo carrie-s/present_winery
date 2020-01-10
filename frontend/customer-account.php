@@ -72,6 +72,11 @@ session_start();
         <h1>會員基本資料</h1>
         <p>編輯您的會員資料</p>
         <p>此資料協助我們寄送產品與提供更多優惠訊息，請務必填寫真實資料</p>
+        <?php if(isset($_GET['MSG']) && $_GET['MSG'] != null){ ?>
+                        <div class="alert alert-success" style="width: 80%">
+                            <strong>更新成功!</strong>
+                        </div>
+                        <?php } ?>
     </div>
 
     <form data-toggle="validator" action="change_password.php" method="post">
@@ -103,7 +108,7 @@ session_start();
             </div>
         </div>
         <input type="hidden" name="updated_at" value="<?php echo date("Y-m-d H:i:s") ?>">    
-        <div class="col-sm-12 text-center">
+        <div >
             <button class="btn draw-border" type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 修改密碼</button>
         </div>
         </div>
@@ -149,17 +154,21 @@ session_start();
                     <div>
                         <div>
                             <label for="county">城市</label>
+                            <div class="select">
                             <select   id="county" name="county">
                                 <option value="<?php echo $_SESSION['member']['county']; ?>"></option>
                             </select>
+                            </div>
                         </div>
                     </div>
                     <div>
                         <div>
                             <label for="district">地區</label>
+                            <div class="select">
                             <select   id="district" name="district">
                             <option value="<?php echo $_SESSION['member']['district']; ?>"></option>
                             </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -176,11 +185,12 @@ session_start();
                     </div>
                 </div>
             </div>
+            <div class="clear-both"></div>
             <div>
                     <input type="hidden" name="updated_at" value="<?php echo date("Y-m-d H:i:s") ?>">
                     <input type="hidden" name="EditForm" value="UPDATE">
                     <button class="btn draw-border" type="submit"><i class="fa fa-save"></i> 更新資料</button>
-                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -190,14 +200,33 @@ session_start();
 <script>
 $(function(){
     $("#twzipcode").twzipcode({
-       // 'zipcodeSel'  : '<?php //echo $_SESSION["member"]["zipcode"] ?>',     // 此參數會優先於 countySel, districtSel
-      //  'countySel'   : '<?php //echo $_SESSION["member"]["county"] ?>',
-       // 'districtSel' : '<?php //echo $_SESSION["member"]["district"] ?>'
+        'zipcodeSel'  : '<?php echo $_SESSION["member"]["zipcode"] ?>',     // 此參數會優先於 countySel, districtSel
+        'countySel'   : '<?php echo $_SESSION["member"]["county"] ?>',
+        'districtSel' : '<?php echo $_SESSION["member"]["district"] ?>'
     });
     $("#twzipcode").find("input[name='zipcode']").eq(1).remove();
     $("#twzipcode").find("select[name='county']").eq(1).remove();
     $("#twzipcode").find("select[name='district']").eq(1).remove();
 });
+$(function(){
+    $("#birthday").datepicker({
+        dateFormat:"yy-mm-dd",
+        changeYear:true,
+        changeMonth:true,
+        yearRange:"1930:2002",
+    });
+});
+<?php if(isset($_SESSION["member"]["gender"]) && $_SESSION["member"]["gender"] != null){ ?>
+<?php if($_SESSION["member"]["gender"] == "0"){ ?>
+    $(function(){
+    $("input[name='gender'][value='0']").attr("checked", true);
+    });
+<?php } else if($_SESSION["member"]["gender"] == "1") { ?>
+    $(function(){
+    $("input[name='gender'][value='1']").attr("checked", true);
+    });
+<?php } ?>
+<?php } ?>
 </script>
 </body>
 </html>

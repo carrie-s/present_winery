@@ -19,6 +19,7 @@ if($is_existed =="false"){
     $temp["productID"] = $_POST["productID"];
     $temp["quantity"] = $_POST["quantity"];
     $temp["categoryID"] = $_POST["categoryID"];
+    $temp["vintage"] = $_POST["vintage"];
     $_SESSION["cart"][] = $temp;
     goto_previousPage($is_existed);
 }

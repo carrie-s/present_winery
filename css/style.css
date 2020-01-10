@@ -36,6 +36,9 @@ a{
     text-decoration: none;
     color: inherit;
 }
+a:hover{
+  text-decoration: none;
+}
 button{
     background-color: transparent;
     cursor: pointer;
@@ -138,6 +141,58 @@ border-right: 0px;
 .btn:focus {
   outline: 1px soild #800020;
 }
+/* select */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #000;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  width: 50%;
+  position: relative;
+  display: inline-flex;
+  line-height: 2rem;
+  background: #000;
+  overflow: hidden;
+  margin-left: 0.5rem;
+}
+select {
+  flex: 1;
+  /* padding: 0.1rem; */
+  color: #fff;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #000;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #800020;
+}
+/* select END */
 
 /* 可以共用 END */
 
@@ -675,13 +730,14 @@ float: left;
   padding: 2rem;
   width: 80%;
   margin: auto;
-  line-height: 2rem;
 }
 
 .product-left .box input{
   width: 100%;
   font-size: 1rem;
   margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
 }
 .product-left .box h2{
   margin-bottom: 2rem;

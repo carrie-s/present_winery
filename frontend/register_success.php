@@ -1,10 +1,11 @@
 <?php
 session_start();
 require_once("../function/connection.php");
-$sql ="INSERT INTO members (account, password, name, created_at) VALUES (:account, :password, :name, :created_at)";
+$sql ="INSERT INTO members (account, password, birthday, name, created_at) VALUES (:account, :password, :birthday, :name, :created_at)";
 $sth = $db ->prepare($sql);
 $sth->bindParam(":account",$_POST['account'],PDO::PARAM_STR);
 $sth->bindParam(":password",$_POST['password'],PDO::PARAM_STR);
+$sth->bindParam(":birthday",$_POST['birthday'],PDO::PARAM_STR);
 $sth->bindParam(":name",$_POST['name'],PDO::PARAM_STR);
 $sth->bindParam(":created_at",$_POST['created_at'],PDO::PARAM_STR);
 $result=$sth->execute();
@@ -84,14 +85,14 @@ $_SESSION['member']=$member;
             <a href="productlist.php"><button class="btn draw-border">前往購物</button></a>
 
         <a href="../index.php"><button class="btn draw-border"><i class="fa fa-home"></i> 回首頁</button>
-        </p>
+</a>
         <?php } ?>
         <?php }else{ ?>
             <h2>註冊失敗</h2>
         <p>請聯繫客服或前往註冊頁面重新註冊</p>
 
         <a href="register.php"><button class="btn draw-border">回註冊頁面</button>
-        </p>
+        </a>
         <?php } ?>
     </div>
 </div>

@@ -65,28 +65,33 @@ session_start();
             <div style="text-align:center;">
                 <h2>註冊會員</h2>
             </div>
-            <form data-toggle="validator" action="register_success.php " method="post">
-                <div >
-                    <label for="name">姓名</label><br>
-                    <input type="text" id="name" name="name" data-error="請輸入名字" required>
-                    <div class="help-block with-errors"></div>
-                </div>
-                <div >
-                    <label for="account">帳號(Email)</label><br>
-                    <input type="email" id="account" data-error="請以Email做為帳號" name="account" required>
-                    <div class="help-block with-errors is_repeat"></div>
-                </div>
-                <div >
-                    <label for="password">密碼</label><br>
-                    <input type="password" data-minlength="6"  data-error="請輸入至少6個字元的密碼" id="password" name="password" required>
-                    <input type="hidden" name="url" value="<?php echo $_GET['url']; ?>">
-                    <div class="help-block with-errors"></div>
-                </div>
-                <div >
-                    <label for="comfirm_password">確認密碼</label><br>
-                    <input type="password"  id="comfirm_password" name="comfirm_password" data-match="#password" data-error="與密碼不符，請檢查" required>
+            <form data-toggle="validator" role="form" id="myForm" action="register_success.php " method="post">
+                <div class="form-group" >
+                    <label for="name">姓名</label><div class="help-block with-errors"></div><br>
+                    <input type="text" id="name" name="name" data-error="*請輸入名字" required>
                     
-                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <label for="birthday">生日</label><div class="help-block with-errors"></div><br>
+                    <input type="text" id="birthday" name="birthday" data-error="*請輸入生日" required>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="account">帳號(Email)</label><div class="help-block with-errors is_repeat"></div><br>
+                    <input type="email" id="account" data-error="*請以Email做為帳號" name="account" required>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="password">密碼</label><div class="help-block with-errors"></div><br>
+                    <input type="password" data-minlength="6"  data-error="*請輸入至少6個字元的密碼" id="password" name="password" required>
+                    <input type="hidden" name="url" value="<?php echo $_GET['url']; ?>">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="comfirm_password">確認密碼</label><div class="help-block with-errors"></div><br>
+                    <input type="password"  id="comfirm_password" name="comfirm_password" data-match="#password" data-error="*與密碼不符，請檢查" required>
+                    
+                    
                 </div>
                 <div style="text-align:center;">
                 <input type="hidden" name="created_at" value="<?php echo date("Y-m-d H:i:s"); ?>">
@@ -101,16 +106,16 @@ session_start();
                 <h2>會員登入</h2>
             </div>
             <form  data-toggle="validator" action="check_login.php" method="post">
-                <div >
-                    <label for="login_account">帳號(Email)</label><br>
-                    <input type="email"  id="login_account" data-error="請輸入帳號" name="account" required>
-                    <div class="help-block with-errors"></div>
+                <div class="form-group">
+                    <label for="login_account">帳號(Email)</label><div class="help-block with-errors"></div><br>
+                    <input type="email"  id="login_account" data-error="*請輸入帳號" name="account" required>
+                    
                 </div>
-                <div >
-                    <label for="login_password">密碼</label><br>
-                    <input type="password"  id="login_password" data-error="請輸入密碼" name="password" required>
+                <div class="form-group">
+                    <label for="login_password">密碼</label><div class="help-block with-errors"></div><br>
+                    <input type="password"  id="login_password" data-error="*請輸入密碼" name="password" required>
                     <input type="hidden" name="url" value="<?php echo $_GET['url']; ?>">
-                    <div class="help-block with-errors"></div>
+                    
                 </div>
                 <div style="text-align:center;">
                     <button class="btn draw-border" type="submit"><i class="fa fa-sign-in"></i> 登入</button>
@@ -122,5 +127,48 @@ session_start();
 </div>
 <?php include_once("template/footer.php");?>
 
+<script>
+$(function(){
+  $( "#birthday" ).datepicker({
+    changeYear:true,
+    changeMonth:true,
+    dateFormat:"yy-mm-dd",      //中間用,(逗號)分開
+    yearRange:"1930:2002",
+  });
+});
+$(function(){
+    $("#password").focus(function(){
+        $.ajax({
+            type:"post",
+            url:"check_email.php",
+            dataType:"text",
+            data:{
+            account:$("#account").val(),
+            },
+            success:function(data){
+                if(data == "repeat"){
+                    $(".is_repeat").parent().addClass("has-error has-danger");
+                    $(".is_repeat").html("*此帳號已使用過，請重新輸入");
+                }else if(data == "no_repeat"){
+                    $(".is_repeat").html("");
+
+                }else if(data == "empty"){
+                    $(".is_repeat").html("*請輸入email做為帳號");
+
+                }
+            }
+
+        });
+    });
+});
+
+</script>
+	<?php  if(isset($_GET["MSG"]) && $_GET['MSG'] == "please_login"){ ?>
+	<script>
+	$(function(){
+		$("#pleaselogin").modal();
+	});
+	</script>
+	<?php } ?>
 </body>
 </html>

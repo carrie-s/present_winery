@@ -15,7 +15,7 @@ $category=$query1 ->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Present Winery</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    
     <?php include_once("template/head_file.php");?>
 </head>
 <body>
@@ -99,8 +99,8 @@ $category=$query1 ->fetchAll(PDO::FETCH_ASSOC);
           <input type="hidden" name="price" value="<?php echo $one_product["price"]; ?>">
           <input type="hidden" name="productID" value="<?php echo $one_product["productID"]; ?>">
           <input type="hidden" name="categoryID" value="<?php echo $one_product["product_categoryID"]; ?>">
-          
-          <button class="btn draw-border">加入購物車</button>
+          <input type="hidden" name="vintage" value="<?php echo $one_product["vintage"]; ?>">
+          <button type="submit" class="btn draw-border">加入購物車</button>
         </div>
       </form>
         <div class="clear-both"></div>
@@ -113,7 +113,7 @@ $category=$query1 ->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <?php include_once("template/footer.php");?>
-<script src="../js/bootstrap.min.js"></script>
+
 <div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="info" aria-hidden="true">
     <div class="modal-dialog modal-sm">
 
@@ -124,7 +124,7 @@ $category=$query1 ->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="modal-body text-center">
                 <p class="text-center text-muted changeword">成功更新數量!</p>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+                <button style="background:#800020;" type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
             </div>
         </div>
     </div>

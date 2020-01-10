@@ -58,7 +58,11 @@ $products=$query2->fetchAll(PDO::FETCH_ASSOC);
                 <a href="frontend/basket.php"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a>
             </div>
             <div class="user">
-            <a href="frontend/register.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+            <?php if(isset($_SESSION['member']) && $_SESSION['member'] != null ){ ?>
+                <a href="frontend/customer-account.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+            <?php }else{ ?> 
+                <a href="frontend/register.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+            <?php } ?>
             </div>
             <div class="menubox" onclick="myFunction(this)">
                 <div class="menu1"></div>

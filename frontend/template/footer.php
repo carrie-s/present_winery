@@ -61,8 +61,12 @@ $category=$query ->fetchAll(PDO::FETCH_ASSOC);
 
 
     <script src="../js/jquery-1.11.0.min.js"></script>
+
     <script src="../js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/validator.min.js"></script>
     <script src="../js/jquery.twzipcode.min.js"></script>
+
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script> -->
 <script src="../js/aos.js"></script>
