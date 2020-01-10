@@ -7,7 +7,7 @@ print_r($member);
 if(isset($member) && $member != null){
     $_SESSION['member']=$member;
     if(isset($_POST['url']) && $_POST['url']== "basket"){
-    header("Location: checkout1.php");
+    header("Location: check.php");
     }else{
     header("Location: customer-account.php");
 }

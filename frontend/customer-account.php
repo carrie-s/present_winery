@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("is_login.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +84,7 @@ session_start();
         <div class="block" >
         <h2>變更密碼</h2>
             <div >
-                <div >
+                 <div class="form-group">
                     <label for="password_old">舊密碼</label>
                     <input type="password"  data-match="#password_hidden" data-error="密碼錯誤" id="password_old" name="password_old">
                     <input type="hidden"  id="password_hidden" name="password_hidden" value="<?php echo $_SESSION['member']['password']; ?>">
@@ -91,16 +92,16 @@ session_start();
                 </div>
             </div>
         
-        <div  >
-            <div  >
-                <div >
+        <div>
+            <div>
+                <div class="form-group">
                     <label for="password_1">新密碼</label>
                     <input type="password" data-minlength="6" data-error="至少輸入六個字元" id="password_new" name="password_new">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
-            <div  >
-                <div  >
+            <div>
+                <div class="form-group">    
                     <label for="password_2">再次輸入新密碼</label>
                     <input type="password" data-match="#password_new" data-error="與新密碼不符，請檢查" id="password_check" name="password_check">
                     <div class="help-block with-errors"></div>

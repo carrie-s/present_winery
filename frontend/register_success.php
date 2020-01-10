@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("is_login.php");
 require_once("../function/connection.php");
 $sql ="INSERT INTO members (account, password, birthday, name, created_at) VALUES (:account, :password, :birthday, :name, :created_at)";
 $sth = $db ->prepare($sql);

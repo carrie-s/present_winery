@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once("is_login.php");
+require_once("../function/connection.php");
+$query=$db->query("SELECT * FROM customer_orders WHERE memberID='".$_SESSION['member']['memberID']."' ORDER BY created_at DESC");
+$orders=$query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,13 +73,13 @@ session_start();
     </div>
     <div class="productlist">
         <div class="margin-bt">
+        <?php if (count($orders)>0){ ?>
             <h1>我的訂單</h1>
-            <?php //if (count($orders)>0){ ?>
             <p>以下為您的所有訂單紀錄</p>
             <p>若有任何問題請至 <a href="contact.php">聯絡我們</a>填寫表單.</p>
         
         <div class="block">
-            <table>
+            <table width="100%" class="table-vcenter">
                 <thead>
                     <tr>
                         <th>訂單編號</th>
@@ -86,34 +90,37 @@ session_start();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php //foreach($orders as $order){ ?>
+                    <?php foreach($orders as $order){ ?>
                     <tr>
-                        <td><?php // echo $order['order_no'];?></td>
-                        <td><?php // echo $order['order_date'];?></td>
-                        <td>$NT <?php // echo $order['total']+$order['shipping'];?></td>
-                        <?php // if ($order['status']==0){ ?>
-                        <td><span class="label label-info">待付款</span>
-                        <?php // }elseif($order['status']==1){ ?>
-                        <span class="label label-success">交易完成</span>
-                        <?php // }elseif($order['status']==2){ ?>
-                        <span class="label label-danger">運送中</span>
-                        <?php // }elseif($order['status']==3){ ?>
-                        <span class="label label-warning">出貨中</span>
-                        <?php // }elseif($order['status']==99){ ?>
-                        <span class="label label-warning">取消訂單</span>
-                        <?php // } ?>
+                        <td><?php  echo $order['order_no'];?></td>
+                        <td><?php  echo $order['order_date'];?></td>
+                        <td>$NT <?php  echo $order['total']+$order['shipping'];?></td>
+                        <?php  if ($order['status']==0){ ?>
+                        <td><span>待付款</span>
+                        <?php  }elseif($order['status']==1){ ?>
+                        <span>交易完成</span>
+                        <?php  }elseif($order['status']==2){ ?>
+                        <span>運送中</span>
+                        <?php  }elseif($order['status']==3){ ?>
+                        <span >出貨中</span>
+                        <?php  }elseif($order['status']==99){ ?>
+                        <span >取消訂單</span>
+                        <?php  } ?>
                         </td>
-                        <td><a href="customer-order.php?customer_orderID=<?php //echo $order['customer_orderID'];?>&no=<?php echo $order['order_no'];?>" class="btn btn-primary btn-sm">觀看詳細</a>
+                        <td>
+                            <a href="customer-order.php?customer_orderID=<?php echo $order['customer_orderID'];?>&no=<?php echo $order['order_no'];?>">
+                            <button class="btn draw-border">觀看詳細</button>
+                        </a>
                         </td>
                     </tr>
-                    <?php // } ?>
+                    <?php  } ?>
                 </tbody>
             </table>
         </div>
-        <?php // }else{ ?>    
-            <p>目前沒有訂單，請至<a href="productlist.php">產品專區</a>進行購物。</p>
+        <?php  }else{ ?>    
+            <h2>目前沒有訂單，請至<a href="productlist.php">產品專區</a>進行購物。</h2>
             <p>若有任何問題，請至 <a href="contact.php">聯絡我們</a>填寫表單。</p>
-        <?php // } ?>
+        <?php  } ?>
         </div>
     </div>
 </div>

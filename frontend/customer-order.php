@@ -1,5 +1,11 @@
 <?php
 session_start();
+require_once("is_login.php");
+require_once("../function/connection.php");
+$query2=$db->query("SELECT * FROM customer_orders WHERE customer_orderID=".$_GET['customer_orderID']);
+$order=$query2->fetch(PDO::FETCH_ASSOC);
+$query=$db->query("SELECT * FROM order_details WHERE customer_orderID=".$_GET['customer_orderID']);
+$order_details=$query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,21 +79,21 @@ session_start();
     </div>
     <div class="productlist">
         <div class="margin-bt">
-            <h1>訂單 #  <?php // echo $_GET['no'];?></h1>
-            <p class="lead">此訂單於<strong> <?php // echo $order['order_date'];?></strong>訂購，目前狀態為：
-                 <?php // if ($order['status']==0){ ?>
-                <td><strong class="label label-info">待付款</strong>
-                 <?php // }elseif($order['status']==1){ ?>
-                <strong class="label label-success">交易完成</strong>
-                 <?php // }elseif($order['status']==2){ ?>
-                <strong class="label label-danger">運送中</strong>
-                 <?php // }elseif($order['status']==3){ ?>
-                <strong class="label label-warning">出貨中</strong>
-                 <?php // }elseif($order['status']==99){ ?>
-                <strong class="label label-warning">取消訂單</strong>
-                 <?php // } ?>.</p>
-            <p class="text-muted">若有任何問題請至 <a href="contact.php">聯絡我們</a>填寫表單.</p>
-
+            <h1>訂單 <?php echo $_GET['no'];?></h1>
+            <p>此訂單於<strong> <?php  echo $order['order_date'];?></strong>訂購，目前狀態為：
+                 <?php  if ($order['status']==0){ ?>
+                <td><strong>待付款</strong>
+                 <?php  }elseif($order['status']==1){ ?>
+                <strong>交易完成</strong>
+                 <?php  }elseif($order['status']==2){ ?>
+                <strong>運送中</strong>
+                 <?php  }elseif($order['status']==3){ ?>
+                <strong>出貨中</strong>
+                 <?php  }elseif($order['status']==99){ ?>
+                <strong>取消訂單</strong>
+                 <?php  } ?>.</p>
+            <p>若有任何問題請至 <a href="contact.php">聯絡我們</a>填寫表單.</p>
+            <a href="customer-orders.php"><button type="button" class="btn draw-border">回上一頁</button></a>        
             <div class="block">
                 <table width="100%">
                     <thead>
@@ -100,53 +106,41 @@ session_start();
                         </tr>
                     </thead>
                     <tbody>
-                         <?php // $total_price=0; ?>
+                         <?php $total_price=0; ?>
         
-                         <?php // foreach($order_details as $order_detail){?>
+                         <?php foreach($order_details as $order_detail){?>
                             
                             
                         
                         <tr>
                             <td class="gray">
-                                <img src="../uploads/products/ <?php // echo $order_detail['picture'];?>" alt=" <?php // echo $order_detail['name'];?>">
+                                <img height="200" src="../uploads/products/<?php  echo $order_detail['picture'];?>" alt=" <?php // echo $order_detail['name'];?>">
                             </td>
-                            <td class="gray"> <?php // echo $order_detail['name'];?>
+                            <td class="gray"> <?php echo $order_detail['name'];?>
                             </td>
-                            <td class="gray"> <?php // echo $order_detail['quantity'];?></td>
-                            <td class="gray">$NT  <?php // echo $order_detail['price'];?></td>
-                            <td class="gray">$NT  <?php // $sub_total=$order_detail['quantity']*$order_detail['price']; echo $sub_total ;?></td>
+                            <td class="gray"> <?php echo $order_detail['quantity'];?></td>
+                            <td class="gray">$NT <?php echo $order_detail['price'];?></td>
+                            <td class="gray">$NT <?php $sub_total=$order_detail['quantity']*$order_detail['price']; echo $sub_total ;?></td>
                         </tr>
-                         <?php // $total_price+= $sub_total; ?>
-                         <?php // } ?>
-                         <tr>
-                            <td class="gray">
-                                <img src="../uploads/products/ <?php // echo $order_detail['picture'];?>" alt=" <?php // echo $order_detail['name'];?>">
-                            </td>
-                            <td class="gray"> <?php // echo $order_detail['name'];?>
-                            </td>
-                            <td class="gray"> <?php // echo $order_detail['quantity'];?></td>
-                            <td class="gray">$NT  <?php // echo $order_detail['price'];?></td>
-                            <td class="gray">$NT  <?php // $sub_total=$order_detail['quantity']*$order_detail['price']; echo $sub_total ;?></td>
-                        </tr>
-                         <?php // $total_price+= $sub_total; ?>
-                         <?php // } ?>
+                         <?php  $total_price+= $sub_total; ?>
+                         <?php  } ?>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="4" class="text-right">總金額(未含運)</td>
-                            <td>$NT  <?php // echo $total_price;?></td>
+                            <td>$NT  <?php  echo $total_price;?></td>
                         </tr>
                         <tr>
                             <td colspan="4" class="text-right">運費</td>
-                            <td>$NT  <?php // echo $order['shipping'];?></td>
+                            <td>$NT  <?php  echo $order['shipping'];?></td>
                         </tr>
                         <tr>
                             <td colspan="4" class="text-right">總金額</td>
-                            <td>$NT  <?php // echo $total_price+$order['shipping'];?></td>
+                            <td>$NT  <?php  echo $total_price+$order['shipping'];?></td>
                         </tr>
                     </tfoot>
                 </table>
-                <table>
+                <table width="100%">
                     <h2>收件人資料</h2>
                     <thead>
                         <tr>
@@ -158,10 +152,10 @@ session_start();
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="gray"> <?php // echo $order['name'];?></td>
-                        <td class="gray"> <?php // echo $order['phone'];?></td>
-                        <td class="gray"> <?php // echo $order['address'];?></td>
-                        <td class="gray"> <?php // echo $order['receive_method'];?></td>
+                        <td class="gray"> <?php  echo $order['name'];?></td>
+                        <td class="gray"> <?php  echo $order['mobile'];?></td>
+                        <td class="gray"> <?php  echo $order['address'];?></td>
+                        <td class="gray"> <?php  echo $order['receive_method'];?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -173,17 +167,5 @@ session_start();
 
 </div>
  <?php include_once("template/footer.php");?>
-<script>
-$(function(){
-    $("#twzipcode").twzipcode({
-       // 'zipcodeSel'  : ' <?php // //echo $_SESSION["member"]["zipcode"] ?>',     // 此參數會優先於 countySel, districtSel
-      //  'countySel'   : ' <?php // //echo $_SESSION["member"]["county"] ?>',
-       // 'districtSel' : ' <?php // //echo $_SESSION["member"]["district"] ?>'
-    });
-    $("#twzipcode").find("input[name='zipcode']").eq(1).remove();
-    $("#twzipcode").find("select[name='county']").eq(1).remove();
-    $("#twzipcode").find("select[name='district']").eq(1).remove();
-});
-</script>
 </body>
 </html>

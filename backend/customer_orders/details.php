@@ -49,9 +49,9 @@ $member=$query2->fetch(PDO::FETCH_ASSOC);
               <div class="col-9">
                 <input type="text" class="form-control-plaintext" readonly id="name" name="name" value="<?php echo $order['name'] ?>"> </div>
             </div>
-            <div class="form-group row"> <label for="phone" class="col-3 col-form-label">收件人電話</label>
+            <div class="form-group row"> <label for="mobile" class="col-3 col-form-label">收件人電話</label>
               <div class="col-9">
-                <input type="text" class="form-control-plaintext" readonly id="phone" name="phone" value="<?php echo $order['phone'] ?>"> </div>
+                <input type="text" class="form-control-plaintext" readonly id="mobile" name="mobile" value="<?php echo $order['mobile'] ?>"> </div>
             </div>
             <div class="form-group row"> <label for="address" class="col-3 col-form-label">收件人地址</label>
               <div class="col-9">

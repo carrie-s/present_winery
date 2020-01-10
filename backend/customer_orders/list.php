@@ -89,7 +89,7 @@ $Total_orders=count($customer_orders);
                   <td><?php echo $one_order["order_no"]; ?></td>
                   <td><?php echo $one_order["order_date"]; ?></td>
                   <td><?php echo $one_order["name"];?></td>
-                  <td><?php echo $one_order["phone"];?></td>
+                  <td><?php echo $one_order["mobile"];?></td>
                   <td><?php echo $one_order["total"]+$one_order["shipping"];?></td>
                   <td>
                     <a class="btn btn-outline-primary" href="details.php?customer_orderID=<?php echo $one_order["customer_orderID"]; ?>">查看明細</a>

@@ -15,13 +15,13 @@ if(isset($_POST["EditForm"]) && $_POST["EditForm"] == "UPDATE"){
   //  }else{
   //   $filename=$_POST["old_picture"];
   //  }
-  $sql = "UPDATE customer_orders SET status=:status, order_no=:order_no, order_date=:order_date, name=:name, phone=:phone, address=:address, total=:total, shipping=:shipping, pay_method=:pay_method, receive_method=:receive_method, updated_at=:updated_at WHERE customer_orderID=:customer_orderID";
+  $sql = "UPDATE customer_orders SET status=:status, order_no=:order_no, order_date=:order_date, name=:name, mobile=:mobile, address=:address, total=:total, shipping=:shipping, pay_method=:pay_method, receive_method=:receive_method, updated_at=:updated_at WHERE customer_orderID=:customer_orderID";
   $sth=$db->prepare($sql);
   $sth->bindparam(":status",$_POST["status"],PDO::PARAM_INT);
   $sth->bindparam(":order_no",$_POST["order_no"],PDO::PARAM_STR);
   $sth->bindparam(":order_date",$_POST["order_date"],PDO::PARAM_STR);
   $sth->bindparam(":name",$_POST["name"],PDO::PARAM_STR);
-  $sth->bindparam(":phone",$_POST["phone"],PDO::PARAM_STR);
+  $sth->bindparam(":mobile",$_POST["mobile"],PDO::PARAM_STR);
   $sth->bindparam(":address",$_POST["address"],PDO::PARAM_STR);
   $sth->bindparam(":total",$_POST["total"],PDO::PARAM_STR);
   $sth->bindparam(":shipping",$_POST["shipping"],PDO::PARAM_STR);
@@ -105,9 +105,9 @@ if(isset($_POST["EditForm"]) && $_POST["EditForm"] == "UPDATE"){
               <div class="col-9">
                 <input type="text" class="form-control" id="name" name="name" value="<?php echo $order['name'] ?>"> </div>
             </div>
-            <div class="form-group row"> <label for="phone" class="col-3 col-form-label">收件人電話</label>
+            <div class="form-group row"> <label for="mobile" class="col-3 col-form-label">收件人電話</label>
               <div class="col-9">
-                <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $order['phone'] ?>"> </div>
+                <input type="text" class="form-control" id="mobile" name="mobile" value="<?php echo $order['mobile'] ?>"> </div>
             </div>
             <div class="form-group row"> <label for="address" class="col-3 col-form-label">收件人地址</label>
               <div class="col-9">

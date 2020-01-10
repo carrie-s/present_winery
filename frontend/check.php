@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("is_login.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +63,7 @@ session_start();
 </div>
 </div>
 </header>
-<form method="post" action="checkout2.php">
+<form method="post" action="order_success.php">
     <div class="news-container">
             <div class="product-left">
                 <div class="box">
@@ -74,8 +75,8 @@ session_start();
                         <input type="text" id="name" name="name" value="<?php echo $_SESSION["member"]["name"] ?>">
                     </div>
                     <div>
-                        <label for="phone">行動電話</label>
-                        <input type="text" id="phone" name="phone" value="<?php echo $_SESSION["member"]["mobile"] ?>">
+                        <label for="mobile">行動電話</label>
+                        <input type="text" id="mobile" name="mobile" value="<?php echo $_SESSION["member"]["mobile"] ?>">
                     </div>
                     <div id="twzipcode">
                         <div>
@@ -84,11 +85,13 @@ session_start();
                         </div>
                         <div>
                             <label for="county">城市</label>
+                            <div class="select">
                             <select id="county" name="county"></select>
-                        </div>
-                        <div>
+                            </div>
                             <label for="district">地區</label>
+                            <div class="select">
                             <select id="district" name="district"></select>
+                        </div>
                         </div>
                     </div>
                     <div>
@@ -152,39 +155,50 @@ session_start();
                             <th>價格</th>
                             <th>小計</th>
                         </tr>
+                        <?php for($i=0; $i<count($_SESSION['cart']);$i++){ ?>
                         <tr>
-                            <td class="gray"><img src='../images/01.png' height="200"></td>
-                            <td class="gray"><h3>商品名稱這裡</h3>年份:1995</td>
-                            <td class="gray">5瓶</td>
-                            <td class="gray">$NT 2600</td>
-                            <td class="gray">$NT 13000</td>
+                            <td class="gray">
+                                <img src='../uploads/products/<?php echo $_SESSION['cart'][$i]['pic'];?>' height="200" alt="<?php echo $_SESSION['cart'][$i]['product_name'];?>">
+                            </td>
+                            <td class="gray">
+                                <h3><?php echo $_SESSION['cart'][$i]['product_name'];?></h3>
+                                年份:<?php echo $_SESSION['cart'][$i]['vintage'];?>
+                            </td>
+                            <td class="gray"><?php echo $_SESSION['cart'][$i]['quantity'];?>瓶</td>
+                            <td class="gray">$NT <?php echo $_SESSION['cart'][$i]['price'];?></td>
+                            <td class="gray">$NT <?php echo $_SESSION['cart'][$i]['quantity']*$_SESSION['cart'][$i]['price'];?></td>
                         </tr>
-                        <tr>
+                        <?php }?>
+                        <!-- <tr>
                             <td class="gray"><img src='../images/01.png' height="200"></td>
                             <td class="gray"><h3>商品名稱這裡</h3>年份:1995</td>
                             <td class="gray">7瓶</td>
                             <td class="gray">$NT 2600</td>
                             <td class="gray">$NT 13000</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td colspan="3"></td>
                             <td ><h3>金額(未含運)</h3></td>
-                            <td><h3>$NT 13000</h3></td>
+                            <td><h3>$NT <?php echo $_SESSION["order"]['sub_total']; ?></h3></td>
                         </tr>
                         <tr>
                             <td colspan="3"></td>
                             <td ><h3>運費</h3></td>
-                            <td><h3>$NT 60</h3></td>
+                            <td><h3 >$NT <span id="radio">100</span></h3></td>
                         </tr>
                         <tr>
                             <td colspan="3"></td>
                             <td ><h2>總金額</h2></td>
-                            <td><h2>$NT 13060</h2></td>
+                            <td><h2 >$NT <span id="total_price"><?php echo $_SESSION["order"]['sub_total']+100; ?></span></h2></td>
                         </tr>
                     </table>
                 </div>
                 <div class="text-right">
-                    <button class="btn draw-border">確定結帳</button>
+                    <input type="hidden" name="status" value="0">  
+                    <input type="hidden" name="order_no" value="<?php echo "PW".date('YmdHis'); ?>">  
+                    <input type="hidden" name="order_date" value="<?php echo date('Y-m-d'); ?>">
+                    <input type="hidden" name="created_at" value="<?php echo date('Y-m-d H:i:s'); ?>">
+                    <button type="submit" class="btn draw-border">確定結帳</button>
                 </div>
             </div>
         <!-- </div> -->
@@ -194,14 +208,41 @@ session_start();
 <script>
 $(function(){
     $("#twzipcode").twzipcode({
-       // 'zipcodeSel'  : '<?php //echo $_SESSION["member"]["zipcode"] ?>',     // 此參數會優先於 countySel, districtSel
-      //  'countySel'   : '<?php //echo $_SESSION["member"]["county"] ?>',
-       // 'districtSel' : '<?php //echo $_SESSION["member"]["district"] ?>'
+        'zipcodeSel'  : '<?php echo $_SESSION["member"]["zipcode"] ?>',     // 此參數會優先於 countySel, districtSel
+        'countySel'   : '<?php echo $_SESSION["member"]["county"] ?>',
+        'districtSel' : '<?php echo $_SESSION["member"]["district"] ?>'
     });
     $("#twzipcode").find("input[name='zipcode']").eq(1).remove();
     $("#twzipcode").find("select[name='county']").eq(1).remove();
     $("#twzipcode").find("select[name='district']").eq(1).remove();
 });
 </script>
+  <script>
+$(function(){
+    $("input:radio[name=delivery]").change(function(){
+        $.ajax({
+            type:"post",
+            url:"test_radio.php",
+            dataType:"text",
+            data:{
+            delivery:$("input:radio[name=delivery]:checked").val(),
+            },
+            success:function(data){
+                $("#radio").html($("input:radio[name=delivery]:checked").val());
+                if(data == "value1"){
+                    $("#total_price").html("<?php echo $_SESSION["order"]['sub_total']+150; ?>");
+                }else if((data == "value2")){
+                    $("#total_price").html("<?php echo $_SESSION["order"]['sub_total']+100; ?>");
+                }
+
+                    // $("#radio").html($("input:radio[name=delivery]:checked").val());
+                    //  if(data == "success"){
+                    //     $("#radio").html("success");
+                    //  }
+            }
+        });
+    });
+});
+  </script>
 </body>
 </html>

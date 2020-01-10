@@ -159,13 +159,15 @@ select::-ms-expand {
 }
 /* Custom Select */
 .select {
-  width: 50%;
+  width: 35%;
   position: relative;
   display: inline-flex;
   line-height: 2rem;
   background: #000;
   overflow: hidden;
   margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-top:0.5rem
 }
 select {
   flex: 1;
@@ -173,6 +175,7 @@ select {
   color: #fff;
   cursor: pointer;
   margin-left: 1rem;
+  
 }
 /* Arrow */
 .select::after {
@@ -193,6 +196,7 @@ select {
   color: #800020;
 }
 /* select END */
+
 
 /* 可以共用 END */
 
@@ -730,6 +734,7 @@ float: left;
   padding: 2rem;
   width: 80%;
   margin: auto;
+  line-height: 2rem;
 }
 
 .product-left .box input{
@@ -781,6 +786,9 @@ strong{
   line-height: 2rem;
   margin: auto;
 }
+#zipcode{
+  width: 30%;
+}
 /* check end */
 /* success */
 .centerbox{
@@ -830,6 +838,20 @@ margin-bottom: 2rem;
 }
 table{
   border-collapse:collapse;
+}
+.table-vcenter td{
+  vertical-align:"middle";
+}
+.block .table-vcenter button{
+  margin-top: 0.5rem ;
+  margin-bottom: 0.5rem ;
+}
+.block .table-vcenter th{
+  padding: 0;
+}
+.block table img{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 /* customer end */
 /* footer */
