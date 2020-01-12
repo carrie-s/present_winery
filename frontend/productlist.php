@@ -17,21 +17,10 @@ $category=$query ->fetchAll(PDO::FETCH_ASSOC);
     
 </head>
 <body>
+
+<header  data-aos="fade-down" style="background-image: url('../images/header.jpg');">
 <?php include_once("template/navbar.php");?>
 
-<header  data-aos="fade-down" style="background-image: url('../images/ab-1.jpg');">
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
 <div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>產品類別</h2>
@@ -48,11 +37,11 @@ $category=$query ->fetchAll(PDO::FETCH_ASSOC);
          <nav class="nav-breadcrumb">
 						<div class="single-breadcrumb-wrap">
                             <span class="sep"><i class="fa fa-caret-right"></i></span>
-                            <span class="breadcrumb"><a href="../index.php">HOME</a></span>
+                            <span class="breadcrumb"><a href="../index.php">首頁</a></span>
 						</div>
 						<div class="single-breadcrumb-wrap">
                             <span class="sep"><i class="fa fa-caret-right"></i></span>
-                            <span class="breadcrumb"><a href="productlist.php">PRODUCT</a></span>
+                            <span class="breadcrumb"><a href="productlist.php">產品系列</a></span>
 						</div>
 						
 				</nav>
@@ -63,7 +52,10 @@ $category=$query ->fetchAll(PDO::FETCH_ASSOC);
 </div>
 </div>
 </header>
-<div class="product_category">
+<div class="product_category" >
+<div class="text-right">
+  <a href="productfilter.php"><button class="btn draw-border">看全部產品 →</button></a>
+  </div>
   <div class="category" style="background-image:url('../images/germany1.jpg');">
   <div class="center-y">
   <a href="productfilter.php?categoryID=<?php echo $category[0]['product_categoryID'] ?>">
@@ -75,7 +67,7 @@ $category=$query ->fetchAll(PDO::FETCH_ASSOC);
 
   <div class="category" style="background-image:url('../images/spain.jpg');">
   <div class="center-y">
-  <a href="productfilter.php">
+  <a href="productfilter.php?categoryID=<?php echo $category[1]['product_categoryID'] ?>">
     <h1>SPAIN</h1>
   <h2>西班牙系列</h2>
 </a>
@@ -83,7 +75,7 @@ $category=$query ->fetchAll(PDO::FETCH_ASSOC);
   </div>
   <div class="category" style="background-image:url('../images/france2.jpg');">
   <div class="center-y">
-  <a href="productfilter.php">
+  <a href="productfilter.php?categoryID=<?php echo $category[2]['product_categoryID'] ?>">
   <h1>FRANCE</h1>
   <h2>法國系列</h2>
   </a>
@@ -91,13 +83,13 @@ $category=$query ->fetchAll(PDO::FETCH_ASSOC);
   </div>
   <div class="category" style="background-image:url('../images/italy1.jpg');">
   <div class="center-y">
-  <a href="productfilter.php">
+  <a href="productfilter.php?categoryID=<?php echo $category[3]['product_categoryID'] ?>">
   <h1>ITALY</h1>
   <h2>義大利系列</h2>
   </a>
   </div>
   </div>
-  <button class="btn draw-border">看全部產品 →</button>
+  
 </div>
 
 <?php include_once("template/footer.php");?>

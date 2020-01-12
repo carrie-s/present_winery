@@ -3,6 +3,8 @@ session_start();
 require_once("../function/connection.php");
 $query = $db ->query("SELECT * FROM news WHERE newsID=".$_GET["newsID"]);
 $one_news = $query -> fetch(PDO::FETCH_ASSOC);
+$query1 = $db ->query("SELECT * FROM news WHERE newsID!=".$_GET["newsID"]." limit 3");
+$other_news = $query1 -> fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,21 +16,10 @@ $one_news = $query -> fetch(PDO::FETCH_ASSOC);
     <?php include_once("template/head_file.php");?>
 </head>
 <body>
+
+<header  data-aos="fade-down" style="background-image: url('../images/header.jpg');">
 <?php include_once("template/navbar.php");?>
 
-<header  data-aos="fade-down" style="background-image: url('../images/ab-1.jpg');">
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
 <div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>最新消息</h2>
@@ -44,12 +35,16 @@ $one_news = $query -> fetch(PDO::FETCH_ASSOC);
 			<div class="site-nav-wrap">
          <nav class="nav-breadcrumb">
 						<div class="single-breadcrumb-wrap">
-                            <span class="sep"><i class="fa fa-caret-right"></i></span>
-                            <span class="breadcrumb"><a href="../index.php">HOME</a></span>
-						</div>
+                <span class="sep"><i class="fa fa-caret-right"></i></span>
+                <span class="breadcrumb"><a href="../index.php">首頁</a></span>
+            </div>
+            <div class="single-breadcrumb-wrap">
+                <span class="sep"><i class="fa fa-caret-right"></i></span>
+                <span class="breadcrumb"><a href="newslist.php">最新消息列表</a></span>
+            </div>
 						<div class="single-breadcrumb-wrap">
                             <span class="sep"><i class="fa fa-caret-right"></i></span>
-                            <span class="breadcrumb"><a href="newslist.php">NEWS</a></span>
+                            <span class="breadcrumb"><a href="news.php?newsID=<?php echo $one_news["newsID"]; ?>"><?php echo $one_news["title"]; ?></a></span>
 						</div>
 						
 				</nav>
@@ -60,7 +55,7 @@ $one_news = $query -> fetch(PDO::FETCH_ASSOC);
 </div>
 </div>
 </header>
-    <div class="news-container">
+    <div class="news-container" >
 
       <div class="news-outer">
         <div class="news-image">
@@ -71,14 +66,19 @@ $one_news = $query -> fetch(PDO::FETCH_ASSOC);
           <p><?php echo $one_news["published_at"]; ?></p>
           
           <p><?php echo $one_news["content"]; ?></p>
+          <a href="newslist.php"><button class="btn draw-border">回上一頁</button></a>
         </div>
       </div>
       <div class="filter-right">
-          <h4>其他消息</h4>
-          <ul class="sidebar">
-              <li><a href="">文章標題</a></li>
-              <li><a href="">文章標題</a></li>
-              <li><a href="">文章標題</a></li>
+          <h4 class="filter-title">相關消息</h4>
+          <ul class="sidebar-right">
+            <?php foreach($other_news as $other){ ?>
+              <li>
+              <a href="news.php?newsID=<?php echo $other["newsID"]; ?>">
+                <img src="../uploads/news/<?php echo $other["picture"]; ?>" alt=""></a>
+                <a href="news.php?newsID=<?php echo $other["newsID"]; ?>"><?php echo $other["title"]; ?></a>
+              </li>
+            <?php } ?>  
           </ul>
       </div> 
     </div>

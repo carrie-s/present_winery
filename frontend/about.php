@@ -15,21 +15,8 @@ $about = $query->fetch(PDO::FETCH_ASSOC);
 </head>
 <body>
 <!-- <div> -->
+<header style="background-image: url('../images/header.jpg');" data-aos="fade-down">
 <?php include_once("template/navbar.php");?>
-
-<header style="background-image: url('../images/ab-1.jpg');" data-aos="fade-down">
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
 <div id="title-center" data-aos="fade-down">
     <div class="pagetitle">
         <h2>關於我們</h2>
@@ -60,14 +47,14 @@ $about = $query->fetch(PDO::FETCH_ASSOC);
     </div>
 </div>
 </header>
-    <div class="position">
+<div class="news-container tb" >
         <!-- <div class="title">
                 <img class="titleimg" src="../images/about.png" alt="about">
         </div> -->
-        <section class="intro">
+        <!-- <section class="intro">
             <div class="left" data-aos="fade-right">
                 <div>
-                <?php echo $about["content"]; ?>
+                
                 </div>
             </div>
             <div class="slider" data-aos="fade-left">
@@ -87,24 +74,23 @@ $about = $query->fetch(PDO::FETCH_ASSOC);
                 </nav>
                 </ul>
             </div>
-        </section>
-        <div class="about">
-            <div class="ab-item">
-				<!-- <p class="">
-                本公司主要進口優質且價格合理的德國高級葡萄酒．由德國當地酒莊的專業人士精心挑選及推薦而引進，以德國萊茵黑森產區為主，等級有德國法定地區葡萄酒(QbA)及最優質葡萄酒(QmP)。本公司進口之葡萄酒採用低溫方式保存儲藏，品質值得信賴保證．
-
-                我們提供各種的紅酒.白酒.冰酒及貴腐酒等，口味從較不甜到香甜都有，在年節送禮方面我們特別設計精美的禮盒搭配各種的萄葡酒，更襯托您的高品味與對好東西的堅持。海燕葡萄酒非常適合個人飲用或公司團體年節贈禮的最佳選擇，有需要者非常歡迎洽詢本公司。
-
-                我們會將葡萄酒知識於網路上與大家一起分享，並提供更豐富的資訊與活動，和各位同好一起認識及享受葡萄酒，以期服務更多對葡萄酒有興趣的朋友。
-                </p> -->
+        </section> -->
+        <div class="vc">
+            <div class="about">
+                <div class="ab-item">
+                    <?php echo $about["content"]; ?>
+                </div>
             </div>
+        </div>
+        <div class="vc ">
+            <img src="../images/abn(7).jpg" alt="">
         </div>
     </div>
 
 
     <?php include_once("template/footer.php");?>
     <!-- </div> -->
-    <script>
+    <!-- <script>
         $(window).scroll(function() {
             if ($(document).scrollTop() > 50) {
                 $('.nav').addClass('affix');
@@ -176,6 +162,6 @@ $about = $query->fetch(PDO::FETCH_ASSOC);
 
 	const slider = new SliderClip(document.querySelector('.slider'));
 }
-    </script>
+    </script> -->
 </body>
 </html>

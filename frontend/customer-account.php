@@ -12,21 +12,10 @@ require_once("is_login.php");
     <?php include_once("template/head_file.php");?>
 </head>
 <body>
+
+<header  data-aos="fade-down" style="background-image: url('../images/header.jpg');">
 <?php include_once("template/navbar.php");?>
 
-<header  data-aos="fade-down" style="background-image: url('../images/abn(4)-1.jpg');">
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
 <div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>會員專區</h2>
@@ -60,15 +49,16 @@ require_once("is_login.php");
 </div>
 </div>
 </header>
-<div class="news-container">
-<div class="filter">
+<div class="news-container" >
+    <div class="menu-dwon">會員專區 <i class="fa fa-angle-double-down" aria-hidden="true"></i></div>
+<div class="filter bar-small">
           <ul class="sidebar">
-              <li><a href="customer-account.php">我的基本資料</a></li>
-              <li><a href="customer-orders.php">我的訂單</a></li>
-              <li><a href="logout.php">登出</a></li>
+              <li><a href="customer-account.php">會員資料</a></li>
+              <li><a href="customer-orders.php">訂單紀錄</a></li>
+              <li><a href="logout.php">登出會員</a></li>
           </ul>
 </div>
-<div class="productlist">
+<div class="productlist list-big">
     <div class="margin-bt">
         <h1>會員基本資料</h1>
         <p>編輯您的會員資料</p>
@@ -228,6 +218,11 @@ $(function(){
     });
 <?php } ?>
 <?php } ?>
+$(function(){
+$(".menu-dwon").click(function(){
+    $(".filter").slideToggle("slow");
+  });});
 </script>
+
 </body>
 </html>

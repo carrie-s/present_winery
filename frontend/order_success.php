@@ -56,21 +56,10 @@ unset($_SESSION['cart']);
     <?php include_once("template/head_file.php");?>
 </head>
 <body>
+
+<header  data-aos="fade-down" style="background-image: url('../images/header.jpg');">
 <?php include_once("template/navbar.php");?>
 
-<header  data-aos="fade-down" style="background-image: url('../images/abn(4)-1.jpg');">
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
 <div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>結帳成功</h2>
@@ -112,7 +101,7 @@ unset($_SESSION['cart']);
 </div>
 </div>
 </header>
-<div class="news-container">
+<div class="news-container" >
     <div class="centerbox">
         <h2>結帳成功</h2>
         

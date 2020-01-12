@@ -15,23 +15,35 @@ $order_details=$query->fetchAll(PDO::FETCH_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Present Winery</title>
      <?php include_once("template/head_file.php");?>
+     <style>
+    table.two-axis tr td:first-of-type {
+  background: transparent;
+}
+
+@media only screen and (max-width: 568px) {
+  table.two-axis tr td:first-of-type,
+  table.two-axis tr:nth-of-type(2n+2) td:first-of-type {
+      border-top:1px solid #FFF;
+    /* background-color: hsla(345, 100%, 25%, 0.6); */
+    /* color: #ffffff; */
+  }
+
+  table.two-axis tr td:first-of-type {
+    /* border-bottom: 1px solid #e4ebeb; */
+  }
+
+  table.two-axis tr td:first-of-type:before {
+    padding-bottom: 10px;
+  }
+}
+
+    </style>
 </head>
 <body>
- <?php include_once("template/navbar.php");?>
 
-<header  data-aos="fade-down" style="background-image: url('../images/abn(4)-1.jpg');">
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
+<header  data-aos="fade-down" style="background-image: url('../images/header.jpg');">
+<?php include_once("template/navbar.php");?>
+
 <div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>會員專區</h2>
@@ -54,11 +66,11 @@ $order_details=$query->fetchAll(PDO::FETCH_ASSOC);
 						</div>
 						<div class="single-breadcrumb-wrap">
                             <span class="sep"><i class="fa fa-caret-right"></i></span>
-                            <span class="breadcrumb"><a href="customer-orders.php">我的訂單</a></span>
+                            <span class="breadcrumb"><a href="customer-orders.php">我的訂單紀錄</a></span>
                         </div>
                         <div class="single-breadcrumb-wrap">
                             <span class="sep"><i class="fa fa-caret-right"></i></span>
-                            <span class="breadcrumb"><a href="customer-order.php">訂單</a></span>
+                            <span class="breadcrumb"><a href="customer-order.php?customer_orderID=<?php echo $order['customer_orderID'];?>&no=<?php echo $order['order_no'];?>"><?php echo $_GET['no'];?></a></span>
 						</div>
 						
 				</nav>
@@ -69,17 +81,18 @@ $order_details=$query->fetchAll(PDO::FETCH_ASSOC);
 </div>
 </div>
 </header>
-<div class="news-container">
-    <div class="filter">
+<div class="news-container" >
+<div class="menu-dwon">會員專區 <i class="fa fa-angle-double-down" aria-hidden="true"></i></div>
+    <div class="filter bar-small">
             <ul class="sidebar">
-                <li><a href="customer-account.php">我的基本資料</a></li>
-                <li><a href="customer-orders.php">我的訂單</a></li>
-                <li><a href="logout.php">登出</a></li>
+                <li><a href="customer-account.php">會員資料</a></li>
+                <li><a href="customer-orders.php">訂單紀錄</a></li>
+                <li><a href="logout.php">登出會員</a></li>
             </ul>
     </div>
-    <div class="productlist">
+    <div class="productlist list-big">
         <div class="margin-bt">
-            <h1>訂單 <?php echo $_GET['no'];?></h1>
+            <h2>訂單 <?php echo $_GET['no'];?></h2>
             <p>此訂單於<strong> <?php  echo $order['order_date'];?></strong>訂購，目前狀態為：
                  <?php  if ($order['status']==0){ ?>
                 <td><strong>待付款</strong>
@@ -95,7 +108,7 @@ $order_details=$query->fetchAll(PDO::FETCH_ASSOC);
             <p>若有任何問題請至 <a href="contact.php">聯絡我們</a>填寫表單.</p>
             <a href="customer-orders.php"><button type="button" class="btn draw-border">回上一頁</button></a>        
             <div class="block">
-                <table width="100%">
+                <table id="myorder" class="table-vcenter two-axis" style="text-align: left;" width="100%">
                     <thead>
                         <tr>
                             <th>產品圖片</th>
@@ -118,8 +131,8 @@ $order_details=$query->fetchAll(PDO::FETCH_ASSOC);
                             </td>
                             <td class="gray"> <?php echo $order_detail['name'];?>
                             </td>
-                            <td class="gray"> <?php echo $order_detail['quantity'];?></td>
-                            <td class="gray">$NT <?php echo $order_detail['price'];?></td>
+                            <td class="gray"> <?php echo $order_detail['quantity'];?> 瓶</td>
+                            <td class="gray">$NT <?php echo $order_detail['price'];?>/瓶</td>
                             <td class="gray">$NT <?php $sub_total=$order_detail['quantity']*$order_detail['price']; echo $sub_total ;?></td>
                         </tr>
                          <?php  $total_price+= $sub_total; ?>
@@ -127,20 +140,20 @@ $order_details=$query->fetchAll(PDO::FETCH_ASSOC);
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="4" class="text-right">總金額(未含運)</td>
-                            <td>$NT  <?php  echo $total_price;?></td>
+                            <td colspan="2" class="text-right">總金額(未含運)</td>
+                            <td colspan="3" class="text-right">$NT  <?php  echo $total_price;?></td>
                         </tr>
                         <tr>
-                            <td colspan="4" class="text-right">運費</td>
-                            <td>$NT  <?php  echo $order['shipping'];?></td>
+                            <td colspan="2" class="text-right">運費</td>
+                            <td colspan="3" class="text-right">$NT  <?php  echo $order['shipping'];?></td>
                         </tr>
                         <tr>
-                            <td colspan="4" class="text-right">總金額</td>
-                            <td>$NT  <?php  echo $total_price+$order['shipping'];?></td>
+                            <td colspan="2" class="text-right"><h3>總金額</h3></td>
+                            <td colspan="3" class="text-right"><h3>$NT  <?php  echo $total_price+$order['shipping'];?></h3></td>
                         </tr>
                     </tfoot>
                 </table>
-                <table width="100%">
+                <table id="receive" class="table-vcenter" style="text-align: left;" width="100%">
                     <h2>收件人資料</h2>
                     <thead>
                         <tr>
@@ -167,5 +180,14 @@ $order_details=$query->fetchAll(PDO::FETCH_ASSOC);
 
 </div>
  <?php include_once("template/footer.php");?>
+ 
+ <script>
+$("#myorder,#receive").basictable();
+$(function(){
+$(".menu-dwon").click(function(){
+    $(".filter").slideToggle("slow");
+  });});
+</script>
+</script>
 </body>
 </html>

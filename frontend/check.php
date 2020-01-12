@@ -10,23 +10,35 @@ require_once("is_login.php");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Present Winery</title>
     <?php include_once("template/head_file.php");?>
+    <style>
+    table.two-axis tr td:first-of-type {
+  background: transparent;
+}
+
+@media only screen and (max-width: 568px) {
+  table.two-axis tr td:first-of-type,
+  table.two-axis tr:nth-of-type(2n+2) td:first-of-type {
+      border-top:1px solid #FFF;
+    /* background-color: hsla(345, 100%, 25%, 0.6); */
+    /* color: #ffffff; */
+  }
+
+  table.two-axis tr td:first-of-type {
+    /* border-bottom: 1px solid #e4ebeb; */
+  }
+
+  table.two-axis tr td:first-of-type:before {
+    padding-bottom: 10px;
+  }
+}
+
+    </style>
 </head>
 <body>
+
+<header  data-aos="fade-down" style="background-image: url('../images/header.jpg');">
 <?php include_once("template/navbar.php");?>
 
-<header  data-aos="fade-down" style="background-image: url('../images/abn(4)-1.jpg');">
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
 <div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>結帳流程</h2>
@@ -64,7 +76,7 @@ require_once("is_login.php");
 </div>
 </header>
 <form method="post" action="order_success.php">
-    <div class="news-container">
+    <div class="news-container" >
             <div class="product-left">
                 <div class="box">
                     <div style="text-align:center;">
@@ -147,7 +159,7 @@ require_once("is_login.php");
                     <h2>Step 4 - 確認訂單</h2>
                 </div>
                 <div class="basket">
-                    <table width="100%" >
+                    <table id="checkorder"  class="two-axis" style="text-align: left;" width="100%" >
                         <tr>
                             <th>圖片</th>
                             <th>名稱</th>
@@ -162,7 +174,9 @@ require_once("is_login.php");
                             </td>
                             <td class="gray">
                                 <h3><?php echo $_SESSION['cart'][$i]['product_name'];?></h3>
+                                <?php if ($_SESSION['cart'][$i]["vintage"] != null){ ?>
                                 年份:<?php echo $_SESSION['cart'][$i]['vintage'];?>
+                                <?php } ?>
                             </td>
                             <td class="gray"><?php echo $_SESSION['cart'][$i]['quantity'];?>瓶</td>
                             <td class="gray">$NT <?php echo $_SESSION['cart'][$i]['price'];?></td>
@@ -198,7 +212,7 @@ require_once("is_login.php");
                     <input type="hidden" name="order_no" value="<?php echo "PW".date('YmdHis'); ?>">  
                     <input type="hidden" name="order_date" value="<?php echo date('Y-m-d'); ?>">
                     <input type="hidden" name="created_at" value="<?php echo date('Y-m-d H:i:s'); ?>">
-                    <button type="submit" class="btn draw-border">確定結帳</button>
+                    <button style="z-index:0;" type="submit" class="btn draw-border">確定結帳</button>
                 </div>
             </div>
         <!-- </div> -->
@@ -244,5 +258,8 @@ $(function(){
     });
 });
   </script>
+   <script>
+$("#checkorder").basictable();
+</script>
 </body>
 </html>

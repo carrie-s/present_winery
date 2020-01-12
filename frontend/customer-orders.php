@@ -13,23 +13,35 @@ $orders=$query->fetchAll(PDO::FETCH_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Present Winery</title>
     <?php include_once("template/head_file.php");?>
+    <style>
+    table.two-axis tr td:first-of-type {
+  background: transparent;
+}
+
+@media only screen and (max-width: 568px) {
+  table.two-axis tr td:first-of-type,
+  table.two-axis tr:nth-of-type(2n+2) td:first-of-type {
+      border-top:1px solid #FFF;
+    /* background-color: hsla(345, 100%, 25%, 0.6); */
+    /* color: #ffffff; */
+  }
+
+  table.two-axis tr td:first-of-type {
+    /* border-bottom: 1px solid #e4ebeb; */
+  }
+
+  table.two-axis tr td:first-of-type:before {
+    padding-bottom: 10px;
+  }
+}
+
+    </style>
 </head>
 <body>
+
+<header  data-aos="fade-down" style="background-image: url('../images/header.jpg');">
 <?php include_once("template/navbar.php");?>
 
-<header  data-aos="fade-down" style="background-image: url('../images/abn(4)-1.jpg');">
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
 <div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>會員專區</h2>
@@ -52,7 +64,7 @@ $orders=$query->fetchAll(PDO::FETCH_ASSOC);
 						</div>
 						<div class="single-breadcrumb-wrap">
                             <span class="sep"><i class="fa fa-caret-right"></i></span>
-                            <span class="breadcrumb"><a href="customer-orders.php">我的訂單</a></span>
+                            <span class="breadcrumb"><a href="customer-orders.php">我的訂單紀錄</a></span>
 						</div>
 						
 				</nav>
@@ -63,23 +75,25 @@ $orders=$query->fetchAll(PDO::FETCH_ASSOC);
 </div>
 </div>
 </header>
-<div class="news-container">
-    <div class="filter">
+<div class="news-container" >
+<div class="menu-dwon">會員專區 <i class="fa fa-angle-double-down" aria-hidden="true"></i></div>
+
+    <div class="filter bar-small">
             <ul class="sidebar">
-                <li><a href="customer-account.php">我的基本資料</a></li>
-                <li><a href="customer-orders.php">我的訂單</a></li>
-                <li><a href="logout.php">登出</a></li>
+                <li><a href="customer-account.php">會員資料</a></li>
+                <li><a href="customer-orders.php">訂單紀錄</a></li>
+                <li><a href="logout.php">登出會員</a></li>
             </ul>
     </div>
-    <div class="productlist">
+    <div class="productlist list-big">
         <div class="margin-bt">
         <?php if (count($orders)>0){ ?>
-            <h1>我的訂單</h1>
+            <h1>我的訂單紀錄</h1>
             <p>以下為您的所有訂單紀錄</p>
             <p>若有任何問題請至 <a href="contact.php">聯絡我們</a>填寫表單.</p>
         
         <div class="block">
-            <table width="100%" class="table-vcenter">
+            <table id="myorders" class="table-vcenter two-axis" style="text-align: left;" width="100%">
                 <thead>
                     <tr>
                         <th>訂單編號</th>
@@ -109,7 +123,7 @@ $orders=$query->fetchAll(PDO::FETCH_ASSOC);
                         </td>
                         <td>
                             <a href="customer-order.php?customer_orderID=<?php echo $order['customer_orderID'];?>&no=<?php echo $order['order_no'];?>">
-                            <button class="btn draw-border">觀看詳細</button>
+                            <button style="z-index: 0;" class="btn draw-border">觀看詳細</button>
                         </a>
                         </td>
                     </tr>
@@ -138,6 +152,14 @@ $(function(){
     $("#twzipcode").find("select[name='county']").eq(1).remove();
     $("#twzipcode").find("select[name='district']").eq(1).remove();
 });
+</script>
+   <script>
+$("#myorders").basictable();
+$(function(){
+$(".menu-dwon").click(function(){
+    $(".filter").slideToggle("slow");
+  });});
+</script>
 </script>
 </body>
 </html>

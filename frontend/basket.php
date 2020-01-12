@@ -19,23 +19,34 @@ if(isset($_POST["quantity"]) && $_POST["quantity"] != null){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Present Winery</title>
     <?php include_once("template/head_file.php");?>
+    <style>
+    table.two-axis tr td:first-of-type {
+  background: transparent;
+}
+
+@media only screen and (max-width: 568px) {
+  table.two-axis tr td:first-of-type,
+  table.two-axis tr:nth-of-type(2n+2) td:first-of-type {
+      border-top:1px solid #FFF;
+    /* background-color: hsla(345, 100%, 25%, 0.6); */
+    /* color: #ffffff; */
+  }
+
+  table.two-axis tr td:first-of-type {
+    /* border-bottom: 1px solid #e4ebeb; */
+  }
+
+  table.two-axis tr td:first-of-type:before {
+    padding-bottom: 10px;
+  }
+}
+
+    </style>
 </head>
 <body>
-<?php include_once("template/navbar.php");?>
 
-<header  data-aos="fade-down" style="background-image: url('../images/abn(4).jpg');">
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
+<header  data-aos="fade-down" style="background-image: url('../images/header.jpg');">
+<?php include_once("template/navbar.php");?>
 <div id="title-center" data-aos="fade-down">
 <div class="pagetitle">
     <h2>購物車</h2>
@@ -69,13 +80,14 @@ if(isset($_POST["quantity"]) && $_POST["quantity"] != null){
 </div>
 </div>
 </header>
-<div class="news-container">
+<div class="news-container" >
 <div class="basket">
     <form method="post" action="basket.php">
         <h2>我的購物清單</h2>
         <?php if(isset($_SESSION['cart']) && $_SESSION['cart'] != null){ ?>
         <p >目前有<?php echo count($_SESSION['cart']); ?>個未結帳商品</p>
-        <table width="100%" style="text-align: left;" >
+        <table id="basket" class="two-axis" width="100%" style="text-align: left;" >
+        <thead>
             <tr>
                 <th>圖片</th>
                 <th>名稱</th>
@@ -84,18 +96,22 @@ if(isset($_POST["quantity"]) && $_POST["quantity"] != null){
                 <th>小計</th>
                 <th></th>
             </tr>
+        </thead>
+        <tbody>
             <?php $total_price = 0; ?>
             <?php for($i=0; $i<count($_SESSION['cart']); $i++){ ?>
             <tr>
                 <td class="gray">
-                    <img src='../uploads/products/<?php echo $_SESSION['cart'][$i]["pic"]; ?>' height="250" alt="<?php echo $_SESSION['cart'][$i]["product_name"]; ?>">
+                    <img src='../uploads/products/<?php echo $_SESSION['cart'][$i]["pic"]; ?>' height="200" alt="<?php echo $_SESSION['cart'][$i]["product_name"]; ?>">
                 </td>
                 <td class="gray">
                     <h3><?php echo $_SESSION['cart'][$i]["product_name"]; ?>
+                    <?php if ($_SESSION['cart'][$i]["vintage"] != null){ ?>
                     </h3>年份:<?php echo $_SESSION['cart'][$i]["vintage"]; ?>
+                    <?php } ?>
                 </td>
                 <td class="gray">
-                    <input type="number" min="1" value="<?php echo $_SESSION['cart'][$i]["quantity"]; ?>" name="quantity[]" style="width:20%">
+                    <input type="number" min="1" value="<?php echo $_SESSION['cart'][$i]["quantity"]; ?>" name="quantity[]" >
                 </td>
                 <td class="gray">
                     $NT <?php echo $_SESSION['cart'][$i]["price"]; ?>
@@ -109,8 +125,10 @@ if(isset($_POST["quantity"]) && $_POST["quantity"] != null){
                     </a>
                 </td>
             </tr>
+            
             <?php $total_price += $sub_total; }?>
             <?php $_SESSION["order"]['sub_total']=$total_price; ?>
+            </tbody>
             <!-- <tr>
                 <td class="gray"><img src='../images/01.png' height="250"></td>
                 <td class="gray"><h3>商品名稱這裡</h3>年份:1995</td>
@@ -119,11 +137,12 @@ if(isset($_POST["quantity"]) && $_POST["quantity"] != null){
                 <td class="gray">$NT 13000</td>
                 <td class="gray"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></td>
             </tr> -->
+            <tfoot>
             <tr>
-                <td colspan="3"></td>
-                <td ><h2>總金額</h2></td>
-                <td colspan="2"><h2>$NT <?php echo $total_price; ?></h2></td>
+                <td colspan="2" style="  background: transparent;text-align:right;"><h2>總金額</h2></td>
+                <td colspan="4" style="text-align:right;"><h2>$NT <?php echo $total_price; ?></h2></td>
             </tr>
+            </tfoot>
         </table>
   
         <div class="text-right">
@@ -151,7 +170,11 @@ if(isset($_POST["quantity"]) && $_POST["quantity"] != null){
     <?php } else { ?>  
         <br>
         <h4>目前購物車沒有商品，請至<a href="productlist.php">產品專區</a>進行購物。</h4>  
-        <a href="productlist.php"><button type="button" class="btn draw-border">購物去</button></a>       
+        <!-- <div class="test"> -->
+        <a href="productlist.php">
+            <button type="button" class="btn draw-border">購物去</button>
+        </a>   
+        <!-- </div>     -->
     <?php } ?>
 </div>
 </div>
@@ -193,5 +216,8 @@ if(isset($_POST["quantity"]) && $_POST["quantity"] != null){
     });
     </script>
  <?php  } ?>
+ <script>
+$("#basket").basictable();
+</script>
 </body>
 </html>

@@ -18,17 +18,15 @@ if($is_existed == "false"){
     $temp['pic']          = $_POST['pic'];
     $temp['price']        = $_POST['price'];
     $temp['quantity']     = $_POST['quantity'];
+    $temp["vintage"] = $_POST["vintage"];
     //將陣列資料加入到session Cart中
-    $_SESSION['Cart'][] = $temp;
+    $_SESSION['cart'][] = $temp;
     goto_previousPage($is_existed);
 }
 //print_r($_SESSION['Cart']);
 function goto_previousPage($is_existed){
-    $url= explode('?',$_SERVER['HTTP_REFERER']);
-    $location = $url[0];
-    $location.= "?id=".$_POST['product_id'];
-    $location.= "&Existed=".$is_existed;
-
-    header(sprintf('Location: %s ', $location));
-  }
+  $location=$_SERVER["HTTP_REFERER"];
+  $location.="?Existed=".$is_existed;
+  header(sprintf('Location: %s ', $location));
+}
 ?>

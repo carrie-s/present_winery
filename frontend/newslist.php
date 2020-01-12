@@ -14,40 +14,27 @@ $news=$query->fetchAll(PDO::FETCH_ASSOC);
     <?php include_once("template/head_file.php");?>
 </head>
 <body>
-<?php include_once("template/navbar.php");?>
-
-<header  data-aos="fade-down" style="background-image: url('../images/ab-1.jpg');" >
-<div class="toolbar">
-    <div class="toolbar-center">
-        <div class="customer">
-        <a>會員登入</a> | <a href="register.php">加入會員</a> | <a href="contact.php">聯絡我們</a>
-        </div>
-    </div>
-</div>
-<div class="web-logo">
-    <div class="logo-block">
-        <img src="../images/logo-150.png" alt="logo">
-    </div>
-</div>
-<div id="title-center" data-aos="fade-down">
-<div class="pagetitle">
-    <h2>最新消息</h2>
+<header  data-aos="fade-down" style="background-image: url('../images/header.jpg');" >
+    <?php include_once("template/navbar.php");?>
+    <div id="title-center" data-aos="fade-down">
+        <div class="pagetitle">
+            <h2>最新消息</h2>
 
 <!-- breadcrumb -->
-<section class="header">
-  <div class="logo-and-nav-wrap">  
-			<div class="site-nav-wrap">
-         <nav class="nav-breadcrumb">
-						<div class="single-breadcrumb-wrap">
-                            <span class="sep"><i class="fa fa-caret-right"></i></span>
-                            <span class="breadcrumb"><a href="../index.php">HOME</a></span>
-						</div>
-						<div class="single-breadcrumb-wrap">
-                            <span class="sep"><i class="fa fa-caret-right"></i></span>
-                            <span class="breadcrumb"><a href="newslist.php">NEWS</a></span>
-						</div>
+            <section class="header">
+                <div class="logo-and-nav-wrap">  
+                    <div class="site-nav-wrap">
+                        <nav class="nav-breadcrumb">
+                            <div class="single-breadcrumb-wrap">
+                                <span class="sep"><i class="fa fa-caret-right"></i></span>
+                                <span class="breadcrumb"><a href="../index.php">首頁</a></span>
+                            </div>
+                            <div class="single-breadcrumb-wrap">
+                                <span class="sep"><i class="fa fa-caret-right"></i></span>
+                                <span class="breadcrumb"><a href="newslist.php">最新消息列表</a></span>
+                            </div>
 						
-				</nav>
+				        </nav>
 			</div>
 		</div>
     </section>
@@ -68,7 +55,7 @@ $news=$query->fetchAll(PDO::FETCH_ASSOC);
             <li><a href="">網路活動</a></li>
         </ul>
     </div> -->
-    <div class="news-content">
+    <div class="news-content" >
     <?php foreach($news as $data){ ?>
         <div class="one-news">
             <div class="news-img">
